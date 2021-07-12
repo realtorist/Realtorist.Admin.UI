@@ -1,0 +1,54 @@
+@import "../../../../@theme/styles/themes";
+
+$input-text: #30343f;
+
+@include nb-install-component() {
+
+}
+
+form[name="form"] {
+  .errors {
+    color: red;
+    margin-top: 10px;
+  }
+  input {
+    //color: $input-text;
+    background: 0;
+    background-color: rgba(0, 0, 0, 0);
+    background-position: center bottom, center calc(99%);
+    background-repeat: no-repeat;
+    background-size: 0 2px, 100% 1px;
+    transition: all 0.3s ease-in-out;
+
+    &.title {
+      font-size: 2rem;
+      border: 0;
+      padding: 0;
+      background-image: linear-gradient(#e9ecef, #e9ecef),
+        linear-gradient(rgba(120, 130, 140, 0.13), rgba(120, 130, 140, 0.13));
+
+      &::placeholder {
+        font-size: 2rem;
+        line-height: 1;
+      }
+    }
+
+    &:focus {
+      background-image: linear-gradient(#707cd2, #707cd2),
+        linear-gradient(rgba(120, 130, 140, 0.13), rgba(120, 130, 140, 0.13));
+      border: 0;
+      border-radius: 0;
+      box-shadow: none;
+      float: none;
+      background-size: 100% 2px, 100% 1px;
+      outline: 0;
+      //color: #525f7f;
+    }
+
+    &.ng-invalid {
+      &:focus {
+        background-image: linear-gradient(red,red),linear-gradient(rgba(120,130,140,.13),rgba(120,130,140,.13)) !important;
+      }
+    }
+  }
+}

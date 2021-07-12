@@ -1,0 +1,61 @@
+<ng-container *ngIf="!!settings">
+  <form name="form"
+        class="input-form"
+        (ngSubmit)="save(form)"
+        #form="ngForm"
+        autocomplete="off">
+    <div class="row">
+      <div class="col-12">
+        <nb-card>
+          <nb-card-header>
+            <div class="row header-with-buttons">
+              <div class="col-md-10 col-sm-8 header-content">
+                <div class="header-text">Social settings</div>
+              </div>
+
+              <div class="col-md-2 col-sm-4 control-buttons">
+                <nb-button-group status="primary">
+                  <button nbButton
+                          type="button"
+                          status="info"
+                          (click)="save(form)"
+                          title="Save"
+                          [disabled]="form.invalid"
+                          [nbSpinner]="loading">
+                    <nb-icon icon="save-outline"
+                             pack="eva"></nb-icon> Save
+                  </button>
+                </nb-button-group>
+              </div>
+            </div>
+          </nb-card-header>
+        </nb-card>
+      </div>
+    </div>
+    <div class="row"
+         [nbSpinner]="loading">
+      <div class="col-sm-12">
+        <nb-card>
+          <nb-card-body>
+            <div class="row">
+              <div class="col-6">
+                <ngx-string-input-form-group title="Facebook profile URL"
+                                             [parent]="settings"
+                                             property="facebookProfileUrl"
+                                             pattern="https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)">
+                </ngx-string-input-form-group>
+              </div>
+              <div class="col-6">
+                <ngx-string-input-form-group title="Instagram profile URL"
+                                             [parent]="settings"
+                                             property="instagramProfileUrl"
+                                             pattern="https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)">
+                </ngx-string-input-form-group>
+              </div>
+            </div>
+          </nb-card-body>
+        </nb-card>
+      </div>
+    </div>
+  </form>
+</ng-container>

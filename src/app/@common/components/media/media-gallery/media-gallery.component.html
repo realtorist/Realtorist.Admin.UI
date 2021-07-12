@@ -1,0 +1,32 @@
+<div class="row" [nbSpinner]="loading">
+  <div
+    class="col-lg-3 col-md-4 col-sm-6 image-wrapper"
+    *ngFor="
+      let media of medias$
+        | async
+        | paginate
+          : {
+              id: 'server',
+              itemsPerPage: itemsPerPage,
+              currentPage: currentPage,
+              totalItems: total
+            }
+    "
+  >
+    <img
+      [preload]="media.url"
+      [class]="
+        'image-select' + (selectedUrl == media.url ? ' selected' : '')
+      "
+      (click)="selectMedia(media)"
+    />
+  </div>
+</div>
+<div class="row">
+  <div class="col-12">
+    <pagination-controls
+      (pageChange)="getPage($event)"
+      id="server"
+    ></pagination-controls>
+  </div>
+</div>

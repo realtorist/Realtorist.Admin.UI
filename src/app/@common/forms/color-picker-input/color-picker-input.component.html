@@ -1,0 +1,34 @@
+<nb-form-field>
+       <button nbPrefix
+              [style.background]="parent[property]"
+               nbButton
+               ghost
+               title="Color a color"
+               (click)="toggle=!toggle"
+               type="button">
+              <nb-icon  pack="eva"></nb-icon>
+       </button>
+       <input nbInput
+              name="color-picker"
+              fullWidth
+              [placeholder]="title"
+              [(ngModel)]="parent[property]"
+              [(colorPicker)]="parent[property]"
+              [cpUseRootViewContainer]="true"
+              [(cpToggle)]="toggle"
+              [required]="required"
+              #input="ngModel" />
+       <button nbSuffix
+               nbButton
+               ghost
+               title="Pick a color"
+               (click)="toggle=!toggle"
+               type="button">
+              <nb-icon icon="color-picker-outline"
+                       pack="eva"></nb-icon>
+       </button>
+</nb-form-field>
+<div *ngIf="input.invalid && (input.dirty || input.touched)"
+     class="errors">
+       <div *ngIf="input.errors?.required">{{title}} should not be empty</div>
+</div>

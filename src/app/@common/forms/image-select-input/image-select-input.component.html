@@ -1,0 +1,26 @@
+<nb-form-field>
+       <input nbInput
+              fullWidth
+              [id]="property"
+              [placeholder]="title"
+              [name]="property"
+              [(ngModel)]="parent[property]"
+              (ngModelChange)="onChange.emit($event)"
+              [required]="required"
+              pattern="https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}(\.[a-zA-Z0-9()]{1,6})?\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)"
+              #input="ngModel" />
+       <button nbSuffix
+               nbButton
+               ghost
+               (image-select)="parent[property]=$event"
+               title="Select Image"
+               type="button">
+              <nb-icon icon="image-outline"
+                       pack="eva"></nb-icon>
+       </button>
+</nb-form-field>
+<div *ngIf="input.invalid && (input.dirty || input.touched)"
+     class="errors">
+       <div *ngIf="input.errors?.required">{{title}} should not be empty</div>
+       <div *ngIf="input.errors?.pattern">{{title}} is in wrong format</div>
+</div>

@@ -1,0 +1,41 @@
+<div class="header-container">
+  <div class="logo-container">
+    <a (click)="toggleSidebar()"
+       href="#"
+       class="sidebar-toggle">
+      <nb-icon icon="menu-2-outline"></nb-icon>
+    </a>
+    <a class="logo"
+       href="#"
+       (click)="navigateHome()">{{profile?.websiteName ?? 'Loading...'}}</a>
+  </div>
+</div>
+
+<div class="header-container">
+  <nb-actions size="small">
+
+    <!-- <nb-action class="control-item">
+      <nb-search type="rotate-layout"></nb-search>
+    </nb-action> -->
+    <nb-action class="control-item"
+              icon="email-outline"
+              link="/app/requests"
+              badgeStatus="info"
+              [badgeDot]="!!userState?.unreadRequestsCount"
+              badgePosition="top right">
+    </nb-action>
+    <nb-action class="control-item"
+                [href]="websiteLink"
+                title="View website"
+               icon="external-link-outline"></nb-action>
+    <!-- <nb-action class="control-item"
+               icon="bell-outline"></nb-action> -->
+    <nb-action class="user-action">
+      <nb-user [nbContextMenu]="userMenu"
+               [onlyPicture]="userPictureOnly"
+               [name]="profile?.firstName"
+               [picture]="profile?.avatar">
+      </nb-user>
+    </nb-action>
+  </nb-actions>
+</div>

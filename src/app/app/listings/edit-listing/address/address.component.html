@@ -1,0 +1,149 @@
+<nb-card>
+    <nb-card-header>
+        Address
+    </nb-card-header>
+    <nb-card-body>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label for="streetAddress"
+                           class="label">Street address</label>
+                    <input type="text"
+                           nbInput
+                           fullWidth
+                           id="streetAddress"
+                           placeholder="Street address"
+                           name="streetAddress"
+                           [(ngModel)]="address.streetAddress"
+                           readonly />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <ngx-string-input-form-group title="Unit number"
+                                             [parent]="address"
+                                             property="unitNumber"
+                                             (onChange)="onStreetAddresPropertyChange()">
+                </ngx-string-input-form-group>
+            </div>
+            <div class="col-sm-4">
+                <ngx-string-input-form-group title="Street number"
+                                             [parent]="address"
+                                             property="streetNumber"
+                                             (onChange)="onStreetAddresPropertyChange()"
+                                             required>
+                </ngx-string-input-form-group>
+            </div>
+            <div class="col-sm-4">
+                <ngx-string-input-form-group title="Street name"
+                                             [parent]="address"
+                                             property="streetName"
+                                             (onChange)="onStreetAddresPropertyChange()"
+                                             required>
+                </ngx-string-input-form-group>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <ngx-string-input-form-group title="Street direction prefix"
+                                             [parent]="address"
+                                             property="streetDirectionPrefix"
+                                             (onChange)="onStreetAddresPropertyChange()">
+                </ngx-string-input-form-group>
+            </div>
+            <div class="col-sm-4">
+                <ngx-string-input-form-group title="Street direction suffix"
+                                             [parent]="address"
+                                             property="streetDirectionSuffix"
+                                             (onChange)="onStreetAddresPropertyChange()">
+                </ngx-string-input-form-group>
+            </div>
+            <div class="col-sm-4">
+                <ngx-string-input-form-group title="Street type"
+                                             [parent]="address"
+                                             property="streetSuffix"
+                                             (onChange)="onStreetAddresPropertyChange()"
+                                             required>
+                </ngx-string-input-form-group>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <ngx-string-input-form-group title="City"
+                                             [parent]="address"
+                                             property="city"
+                                             required>
+                </ngx-string-input-form-group>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="videoLink"
+                           class="label">Province</label>
+                    <nb-select [(ngModel)]="address.province"
+                               fullWidth
+                               placeholder="Select..."
+                               name="province"
+                               id="province"
+                               required
+                               #province="ngModel">
+                        <nb-option *ngFor="let province of provinces"
+                                   [value]="province"> {{ province }}</nb-option>
+                    </nb-select>
+                    <div *ngIf="province.invalid && (province.dirty || province.touched)"
+                         class="errors">
+                        <div *ngIf="province.errors?.required">Province is required</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <ngx-string-input-form-group title="Postal code"
+                                             [parent]="address"
+                                             property="postalCode"
+                                             pattern="^([A-Z][0-9]){3}$"
+                                             required>
+                </ngx-string-input-form-group>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <ngx-string-input-form-group title="Community name"
+                                             [parent]="address"
+                                             property="communityName">
+                </ngx-string-input-form-group>
+            </div>
+            <div class="col-sm-4">
+                <ngx-string-input-form-group title="Neighbourhood"
+                                             [parent]="address"
+                                             property="neighbourhood">
+                </ngx-string-input-form-group>
+            </div>
+            <div class="col-sm-4">
+                <ngx-string-input-form-group title="Subdivision"
+                                             [parent]="address"
+                                             property="subdivision">
+                </ngx-string-input-form-group>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <ngx-string-input-form-group title="Country"
+                                             [parent]="address"
+                                             property="country">
+                </ngx-string-input-form-group>
+            </div>
+            <div class="col-sm-4">
+                <ngx-string-input-form-group title="Additional street info"
+                                             [parent]="address"
+                                             property="additionalStreetInfo">
+                </ngx-string-input-form-group>
+            </div>
+            <div class="col-sm-4">
+                <ngx-string-input-form-group title="Post office box"
+                                             [parent]="address"
+                                             property="boxNumber">
+                </ngx-string-input-form-group>
+            </div>
+        </div>
+    </nb-card-body>
+</nb-card>

@@ -1,0 +1,7 @@
+<input type="number" [min]="min" [max]="max" [step]="step" nbInput fullWidth [id]="property" [placeholder]="title"
+    [name]="property" [(ngModel)]="parent[property]" #input="ngModel" [required]="required" />
+<div *ngIf="input.invalid && (input.dirty || input.touched)" class="errors">
+    <div *ngIf="required != null && input.errors?.required">Value should not be empty</div>
+    <div *ngIf="min != null && input.errors?.min">Value should be greater or equal {{min}}</div>
+    <div *ngIf="max != null && input.errors?.max">Value shoulb be less or equal {{max}}</div>
+</div>

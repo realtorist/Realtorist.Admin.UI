@@ -1,0 +1,81 @@
+<nb-card>
+    <nb-card-header>Photos</nb-card-header>
+    <nb-card-body>
+        <div class="row" dragula="photos" [(dragulaModel)]="photos">
+            <div class="col-sm-4 mb-3 photo-wrapper sortable-list-item" *ngFor="let photo of photos">
+                <img [src]="photo.url"
+                     class="listing-photo" />
+                <div class="photo-backdrop">
+                    <div class="photo-description">{{photo.description}}</div>
+                    <button type="button"
+                            class="remove-icon"
+                            title="Remove Photo"
+                            nbButton
+                            status="danger"
+                            size="large"
+                            (click)="deletePhoto(photo)"><i class="nb-trash"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="imageUrl"
+                           class="label">Url</label>
+                    <nb-form-field>
+                        <input nbInput
+                               name="imageUrl"
+                               id="imageUrl"
+                               fullWidth
+                               placeholder="URL"
+                               [(ngModel)]="newPhoto.url"
+                               required
+                               pattern="https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}(\.[a-zA-Z0-9()]{1,6})?\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)"
+                               #imageUrl="ngModel" />
+                        <button nbSuffix
+                                nbButton
+                                ghost
+                                (image-select)="newPhoto.url=$event"
+                                title="Select Image"
+                                type="button">
+                            <nb-icon icon="image-outline"
+                                     pack="eva"></nb-icon>
+                        </button>
+                    </nb-form-field>
+                </div>
+                <div *ngIf="imageUrl.invalid && (imageUrl.dirty || imageUrl.touched)"
+                     class="errors">
+                    <div *ngIf="imageUrl.errors?.required">
+                        Image URL is required.
+                    </div>
+                    <div *ngIf="imageUrl.errors?.pattern">
+                        Image URL should be an URL to the image.
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="description"
+                           class="label">Description</label>
+                    <input nbInput
+                           name="description"
+                           fullWidth
+                           placeholder="Description"
+                           [(ngModel)]="newPhoto.description"
+                           #description="ngModel" />
+                </div>
+            </div>
+            <div class="col-sm-12 mt-3">
+                <div class="form-group">
+                    <button type="button"
+                            nbButton
+                            status="primary"
+                            size="giant"
+                            fullWidth
+                            (click)="addPhoto()"
+                            [disabled]="imageUrl.invalid"><i class="nb-plus"></i></button>
+                </div>
+            </div>
+        </div>
+    </nb-card-body>
+</nb-card>

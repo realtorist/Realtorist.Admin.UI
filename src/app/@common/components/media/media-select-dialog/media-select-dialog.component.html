@@ -1,0 +1,36 @@
+<nb-card>
+  <nb-card-header>
+    <div class="row header-with-buttons">
+      <div class="col-6 header-content">
+        <div class="header-text">Select Media File</div>
+      </div>
+      <div class="col-6 control-buttons">
+        <button nbButton ghost (click)="cancel()" title="Close">
+          <nb-icon icon="close-outline" pack="eva"></nb-icon>
+        </button>
+      </div>
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+    <ngx-media-gallery [loading]="loading" [selectedUrl]="selectedUrl" (mediaSelected)="onMediaSelected($event)"></ngx-media-gallery>
+  </nb-card-body>
+  <div class="row mt-2">
+    <div class="col-12">
+      <ngx-media-upload [loading]="loading"
+                        (filesUploaded)="onFilesUploaded($event)"></ngx-media-upload>
+    </div>
+  </div>
+  <nb-card-footer>
+    <button class="cancel" nbButton status="info" (click)="cancel()">
+      Cancel
+    </button>
+    <button
+      nbButton
+      status="success"
+      (click)="submit()"
+      [disabled]="!selectedUrl"
+    >
+      Select
+    </button>
+  </nb-card-footer>
+</nb-card>

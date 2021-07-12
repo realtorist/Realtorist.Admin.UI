@@ -1,0 +1,13 @@
+@import "../../../@theme/styles/themes";
+
+@include nb-install-component() {
+}
+
+:host::ng-deep {
+    .table-photo {
+        display: block;
+        margin: 0 auto;
+        max-width: 100%;
+        max-height: 100px;
+    }
+}

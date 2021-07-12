@@ -1,0 +1,18 @@
+<div class="row">
+    <div class="col-sm-2 nb-toggle-container">
+        <nb-toggle [(ngModel)]="isEnabled" labelPosition="start" (ngModelChange)="enable($event)"></nb-toggle>
+    </div>
+    <div class="col-sm-4" *ngIf="!!measurement">
+        <input type="text" nbInput fullWidth placeholder="Value" name="value" [(ngModel)]="measurement.value"
+            #val="ngModel" pattern="^[0-9]*(\\.?[0-9]+|)$" />
+        <div *ngIf="val.invalid && (val.dirty || val.touched)" class="errors">
+            <div *ngIf="val.errors?.pattern"> Value is in wrong format. </div>
+        </div>
+    </div>
+    <div class="col-sm-6" *ngIf="!!measurement">
+        <nb-select [(selected)]=" measurement.unit" fullWidth placeholder="Select..." name="unit">
+            <nb-option *ngFor="let option of enumDisplayMap.MeasureUnit | keyvalue | keyasint" [value]="option.key"> {{
+                option.value }}</nb-option>
+        </nb-select>
+    </div>
+</div>

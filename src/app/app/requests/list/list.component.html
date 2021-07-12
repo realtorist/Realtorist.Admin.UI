@@ -1,0 +1,39 @@
+<nb-card>
+  <nb-card-header>
+    <div class="row header-with-buttons">
+      <div class="col-6 header-content">
+        <div class="header-text">Customer Requests</div>
+      </div>
+      <div class="col-6 control-buttons">
+        <nb-button-group status="control">
+          <button
+            nbButton
+            status="danger"
+            (click)="markAllAsRead()"
+            title="Mark all as read"
+          >
+            <nb-icon icon="eye-outline" pack="eva"></nb-icon>
+          </button>
+          <button
+            nbButton
+            status="info"
+            (click)="source.refresh()"
+            title="Refresh"
+          >
+            <nb-icon icon="refresh-outline" pack="eva"></nb-icon>
+          </button>
+        </nb-button-group>
+      </div>
+    </div>
+  </nb-card-header>
+
+  <nb-card-body>
+    <ng2-smart-table
+      [settings]="settings"
+      [source]="source"
+      (delete)="onDelete($event)"
+      id="table"
+    >
+    </ng2-smart-table>
+  </nb-card-body>
+</nb-card>

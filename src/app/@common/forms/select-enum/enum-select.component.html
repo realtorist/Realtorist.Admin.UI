@@ -1,0 +1,16 @@
+<nb-select *ngIf="!!multiple" [(selected)]="parent[property]" fullWidth placeholder="Select..." [name]="property"
+    multiple [id]="property" [required]="required">
+    <nb-option *ngFor="let option of enumDisplayMap[enum] | keyvalue | keyasint" [value]="option.key"> {{
+        option.value }}</nb-option>
+</nb-select>
+<ng-container *ngIf="!multiple">
+    <nb-select [(ngModel)]="parent[property]" fullWidth placeholder="Select..." [name]="property" [id]="property"
+        [required]="required" #input="ngModel">
+        <nb-option *ngIf="!required">None</nb-option>
+        <nb-option *ngFor="let option of enumDisplayMap[enum] | keyvalue | keyasint" [value]="option.key"> {{
+            option.value }}</nb-option>
+    </nb-select>
+    <div *ngIf="input.invalid && (input.dirty || input.touched)" class="errors">
+        <div *ngIf="input.errors?.required">{{title}} is required</div>
+    </div>
+</ng-container>

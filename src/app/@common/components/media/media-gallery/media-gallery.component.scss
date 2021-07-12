@@ -1,0 +1,32 @@
+@import "../../../../@theme/styles/themes";
+
+@include nb-install-component() {
+  .image-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    img.image-select {
+      max-width: 100%;
+      max-height: 200px;
+      margin-bottom: 1rem;
+      cursor: pointer;
+      display: block;
+      border: 1px transparent dashed;
+      transition: border-color 0.3s ease-in-out;
+      padding: 1rem;
+
+      &.selected {
+        border-color: nb-theme(border-basic-color-4);
+      }
+    }
+  }
+}
+
+:host::ng-deep {
+  .ngx-pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+}

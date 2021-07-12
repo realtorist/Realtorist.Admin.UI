@@ -1,0 +1,32 @@
+@import "../../../@theme/styles/themes";
+
+@include nb-install-component() {
+}
+
+.additional-css {
+  height: 300px;
+}
+
+.page-components {
+  min-height: 300px;
+}
+
+.handle {
+  cursor: grab;
+}
+
+.control-button {
+  text-align: right;
+}
+
+.tag-wrapper {
+  nb-tag {
+    margin-right: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}

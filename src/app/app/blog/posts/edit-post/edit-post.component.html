@@ -1,0 +1,347 @@
+<ng-container *ngIf="!!post">
+  <form
+    name="form"
+    (ngSubmit)="publish(form)"
+    #form="ngForm"
+    class="input-form"
+    autocomplete="off"
+  >
+    <div class="row">
+      <div class="col-12">
+        <nb-card>
+          <nb-card-header>
+            <div class="row header-with-buttons">
+              <div class="col-md-10 col-sm-8 header-content">
+                <div class="back-button">
+                  <a
+                    nbButton
+                    ghost
+                    routerLink="/app/blog/posts"
+                    title="Go back"
+                  >
+                    <nb-icon icon="chevron-left-outline" pack="eva"></nb-icon>
+                  </a>
+                </div>
+                <div class="header-text">
+                  <span *ngIf="isEdit">Edit post '{{ postTitle }}'</span>
+                  <span *ngIf="!isEdit">Add post</span>
+                </div>
+              </div>
+
+              <div class="col-md-2 col-sm-4 control-buttons">
+                <nb-button-group status="primary">
+                  <button
+                    nbButton
+                    type="button"
+                    status="info"
+                    (click)="publish(form)"
+                    title="Publish"
+                    [disabled]="form.invalid"
+                    [nbSpinner]="loading"
+                  >
+                    <nb-icon icon="save-outline" pack="eva"></nb-icon> Publish
+                  </button>
+                </nb-button-group>
+              </div>
+            </div>
+          </nb-card-header>
+        </nb-card>
+      </div>
+    </div>
+    <div class="row" [nbSpinner]="loading">
+      <div class="col-md-8">
+        <div class="row">
+          <div class="col-12">
+            <nb-card>
+              <nb-card-body>
+                <div class="row mb-3">
+                  <div class="col-12">
+                    <input
+                      nbInput
+                      fullWidth
+                      fieldSize="large"
+                      type="text"
+                      class="title"
+                      name="title"
+                      [(ngModel)]="post.title"
+                      placeholder="Add title"
+                      #title="ngModel"
+                      required
+                      (ngModelChange)="onTitleChange($event)"
+                    />
+                  </div>
+                  <div
+                    *ngIf="title.invalid && (title.dirty || title.touched)"
+                    class="col-12 errors"
+                  >
+                    <div *ngIf="title.errors?.required">Title is required.</div>
+                  </div>
+                </div>
+                <div class="row form-group mb-3">
+                  <div class="col-12">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="link-addon"
+                          >/blog/</span
+                        >
+                      </div>
+                      <input
+                        nbInput
+                        type="text"
+                        class=""
+                        name="link"
+                        [(ngModel)]="post.link"
+                        placeholder="Link"
+                        #link="ngModel"
+                        required
+                        pattern="[a-z0-9-]+"
+                        [disabled]="autoGenerateLink"
+                      />
+                      <div class="input-group-append">
+                        <span class="input-group-text">
+                          <nb-toggle [(checked)]="autoGenerateLink"
+                            >Generate for me</nb-toggle
+                          >
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    *ngIf="link.invalid && (link.dirty || link.touched)"
+                    class="col-12 errors"
+                  >
+                    <div *ngIf="link.errors?.required">Link is required.</div>
+                    <div *ngIf="link.errors?.pattern">
+                      Link should contain only lower case latin characters,
+                      numbers and dash symbol (-).
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12">
+                    <textarea
+                      name="text"
+                      fullWitdth
+                      [(ngModel)]="post.text"
+                      placeholder="Add text"
+                      #text="ngModel"
+                      required
+                      [editor]="{ height: '800px', maxHeight: '800px' }"
+                    ></textarea>
+                  </div>
+                  <div
+                    *ngIf="text.invalid && (text.dirty || text.touched)"
+                    class="col-12 errors"
+                  >
+                    <div *ngIf="text.errors?.required">Text is required.</div>
+                  </div>
+                </div>
+              </nb-card-body>
+            </nb-card>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="row">
+          <div class="col-12">
+            <nb-card>
+              <nb-card-header>Sub title</nb-card-header>
+              <nb-card-body>
+                <div class="row">
+                  <div class="col-12">
+                    <input
+                      fullWidth
+                      nbInput
+                      fieldSize="large"
+                      type="text"
+                      name="subTitle"
+                      [(ngModel)]="post.subTitle"
+                      placeholder="Add sub title"
+                      #subTitle="ngModel"
+                    />
+                  </div>
+                </div>
+              </nb-card-body>
+            </nb-card>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <nb-card>
+              <nb-card-header>Publish date</nb-card-header>
+              <nb-card-body>
+                <div class="row">
+                  <div class="col-12">
+                    <input
+                      fullWidth
+                      nbInput
+                      fieldSize="large"
+                      name="publishDate"
+                      placeholder="Publish date"
+                      [(ngModel)]="post.publishDate"
+                      [nbDatepicker]="publishDatePicker"
+                      required
+                      #publishDate="ngModel"
+                    />
+                    <nb-date-timepicker
+                      #publishDatePicker
+                      withSeconds
+                      singleColumn
+                      [step]="10"
+                      format="dddd, MMMM Do YYYY, h:mm:ss a"
+                    ></nb-date-timepicker>
+                  </div>
+                </div>
+                <div class="row mt-3" *ngIf="post.publishDate && post.publishDate.isAfter()">
+                  <div class="col-12">
+                    <nb-alert status="warning">
+                      Your post will become visible only on the selected date.
+                    </nb-alert>
+                  </div>
+                </div>
+                <div class="row" *ngIf="publishDate.invalid && (publishDate.dirty || publishDate.touched)">
+                  <div class="col-12 errors">
+                    <div *ngIf="publishDate.errors?.required">
+                      Publish date is required.
+                    </div>
+                  </div>
+                </div>
+              </nb-card-body>
+            </nb-card>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <nb-card>
+              <nb-card-header>Featured image</nb-card-header>
+              <nb-card-body>
+                <div class="row">
+                  <div class="col-12">
+                    <nb-form-field>
+                      <input
+                        nbInput
+                        name="image"
+                        fullWidth
+                        placeholder="Featured image"
+                        [(ngModel)]="post.image"
+                        required
+                        pattern="https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)"
+                        #image="ngModel"
+                      />
+                      <button nbSuffix nbButton ghost  (image-select)="post.image=$event" title="Select Image" type="button">
+                        <nb-icon icon="image-outline" pack="eva"></nb-icon>
+                      </button>
+                    </nb-form-field>
+                  </div>
+                </div>
+                <div class="row">
+                  <div
+                    *ngIf="image.invalid && (image.dirty || image.touched)"
+                    class="col-12 errors"
+                  >
+                    <div *ngIf="image.errors?.required">
+                      Featured image is required.
+                    </div>
+                    <div *ngIf="image.errors?.pattern">
+                      Featured image should be an URL to the image.
+                    </div>
+                  </div>
+                </div>
+              </nb-card-body>
+            </nb-card>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <nb-card>
+              <nb-card-header>Category</nb-card-header>
+              <nb-card-body>
+                <div class="row">
+                  <div class="col-12">
+                    <input
+                      fullWidth
+                      nbInput
+                      fieldSize="large"
+                      name="category"
+                      placeholder="Category"
+                      [(ngModel)]="post.category"
+                      required
+                      #category="ngModel"
+                      [nbAutocomplete]="categoriesAutocomplete"
+                      [focusInputOnValueChange]="false"
+                    />
+                  </div>
+
+                  <nb-autocomplete #categoriesAutocomplete>
+                    <nb-option
+                      *ngFor="
+                        let option of getFilteredOptions(
+                          categories$ | async,
+                          post.category
+                        )
+                      "
+                      [value]="option"
+                    >
+                      {{ option }}
+                    </nb-option>
+                  </nb-autocomplete>
+                </div>
+                <div class="row">
+                  <div
+                    *ngIf="
+                      category.invalid && (category.dirty || category.touched)
+                    "
+                    class="col-12 errors"
+                  >
+                    <div *ngIf="category.errors?.required">
+                      Category is required.
+                    </div>
+                  </div>
+                </div>
+              </nb-card-body>
+            </nb-card>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <nb-card>
+              <nb-card-header>Tags</nb-card-header>
+              <nb-card-body>
+                <div class="row">
+                  <div class="col-12">
+                    <nb-tag-list (tagRemove)="onTagRemove($event)">
+                      <nb-tag
+                        *ngFor="let tag of post.tags"
+                        [text]="tag"
+                        removable
+                      ></nb-tag>
+                      <input
+                        type="text"
+                        nbTagInput
+                        name="tag"
+                        #tagInput
+                        (tagAdd)="onTagAdd($event)"
+                        fullWidth
+                        [nbAutocomplete]="tagsAutocomplete"
+                        [focusInputOnValueChange]="false"
+                      />
+                    </nb-tag-list>
+                  </div>
+
+                  <nb-autocomplete #tagsAutocomplete (selectedChange)="onTagAdd({value: $event, input: { nativeElement: tagInput }})">
+                    <nb-option
+                      *ngFor="let option of getFilteredOptions(tags$ | async,tagInput.value)"
+                      [value]="option"
+                    >
+                      {{ option }}
+                    </nb-option>
+                  </nb-autocomplete>
+                </div>
+              </nb-card-body>
+            </nb-card>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</ng-container>

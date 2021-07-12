@@ -1,0 +1,278 @@
+<ng-container *ngIf="!!listing">
+  <form name="form"
+        class="input-form"
+        (ngSubmit)="save(form)"
+        #form="ngForm"
+        autocomplete="off">
+    <div class="row">
+      <div class="col-12">
+        <nb-card>
+          <nb-card-header>
+            <div class="row header-with-buttons">
+              <div class="col-md-10 col-sm-8 header-content">
+                <div class="back-button">
+                  <a nbButton
+                     ghost
+                     routerLink="/app/listings"
+                     title="Go back">
+                    <nb-icon icon="chevron-left-outline"
+                             pack="eva"></nb-icon>
+                  </a>
+                </div>
+                <div class="header-text">
+                  <span *ngIf="isEdit">Edit listing '{{ listingAddress }}'</span>
+                  <span *ngIf="!isEdit">Add listing</span>
+                </div>
+              </div>
+              <div class="col-md-2 col-sm-4 control-buttons">
+                <nb-button-group status="primary">
+                  <button nbButton
+                          type="button"
+                          status="info"
+                          (click)="save(form)"
+                          title="Save"
+                          [disabled]="form.invalid"
+                          [nbSpinner]="loading">
+                    <nb-icon icon="save-outline"
+                             pack="eva"></nb-icon> Save
+                  </button>
+                </nb-button-group>
+              </div>
+            </div>
+          </nb-card-header>
+        </nb-card>
+      </div>
+    </div>
+    <div class="row"
+         [nbSpinner]="loading">
+      <div class="col-md-12">
+        <div class="row">
+          <div class="col-12">
+            <nb-card>
+              <nb-card-header>Main information</nb-card-header>
+              <nb-card-body>
+                <div class="row mb-3">
+                  <div class="col-sm-6">
+                    <ngx-string-input-form-group title="MLS&copy; number"
+                                                 [parent]="listing"
+                                                 property="mlsNumber"
+                                                 required></ngx-string-input-form-group>
+                  </div>
+                  <div class="col-sm-6">
+                    <ngx-enum-select-form-group [parent]="listing"
+                                                property="transactionType"
+                                                title="Transaction type"
+                                                enum="TransactionType"
+                                                required></ngx-enum-select-form-group>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-6">
+                    <ngx-enum-select-form-group [parent]="listing"
+                                                property="ownershipType"
+                                                title="Ownership type"
+                                                enum="OwnershipType"
+                                                required></ngx-enum-select-form-group>
+                  </div>
+                  <div class="col-sm-6">
+                    <ngx-enum-select-form-group [parent]="listing"
+                                                property="propertyType"
+                                                title="Property type"
+                                                enum="PropertyType"
+                                                required></ngx-enum-select-form-group>
+                  </div>
+                </div>
+              </nb-card-body>
+            </nb-card>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <nb-card>
+              <nb-card-header>Price</nb-card-header>
+              <nb-card-body>
+                <div class="row">
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <label for="price"
+                             class="label">Price</label>
+                      <nb-form-field>
+                        <span nbPrefix>$</span>
+                        <input type="text"
+                               nbInput
+                               fullWidth
+                               id="price"
+                               placeholder="Price"
+                               required
+                               name="price"
+                               [(ngModel)]="listing.price"
+                               #price="ngModel"
+                               mask="separator.2" 
+                               thousandSeparator=","
+                               pattern="^[0-9]*(\\.?[0-9]+|)$" />
+                      </nb-form-field>
+                      <div *ngIf="price.invalid && (price.dirty || price.touched)"
+                           class="errors">
+                        <div *ngIf="price.errors?.required"> Price is required. </div>
+                        <div *ngIf="price.errors?.pattern"> Price is in wrong format. </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <ngx-enum-select-form-group [parent]="listing"
+                                                property="pricePerTime"
+                                                title="Price time length"
+                                                enum="PaymentUnit"></ngx-enum-select-form-group>
+                  </div>
+                  <div class="col-sm-4">
+                    <ngx-enum-select-form-group [parent]="listing"
+                                                property="pricePerUnit"
+                                                title="Price unit type"
+                                                enum="MeasureUnit"></ngx-enum-select-form-group>
+                  </div>
+                </div>
+              </nb-card-body>
+            </nb-card>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <ngx-listing-edit-address [address]="listing.address"></ngx-listing-edit-address>
+          </div>
+        </div>
+        <ngx-listing-edit-building [building]="listing.building"></ngx-listing-edit-building>
+        <div class="row">
+          <div class="col-12">
+            <ngx-listing-edit-land [land]="listing.land"></ngx-listing-edit-land>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <nb-card>
+              <nb-card-header>Amenities &amp; Features</nb-card-header>
+              <nb-card-body>
+                <div class="row">
+                  <div class="col-sm-6">
+                    <ngx-enum-select-form-group [parent]="listing"
+                                                property="ammenitiesNearBy"
+                                                title="Amenities"
+                                                enum="AmenitiesNearby"
+                                                multiple></ngx-enum-select-form-group>
+                  </div>
+                  <div class="col-sm-6">
+                    <ngx-enum-select-form-group [parent]="listing"
+                                                property="features"
+                                                title="Features"
+                                                enum="Features"
+                                                multiple></ngx-enum-select-form-group>
+                  </div>
+                </div>
+              </nb-card-body>
+            </nb-card>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <nb-card>
+              <nb-card-header>Waterfront</nb-card-header>
+              <nb-card-body>
+                <div class="row">
+                  <div class="col-sm-6">
+                    <ngx-enum-select-form-group [parent]="listing.waterFront"
+                                                property="type"
+                                                title="Waterfront type"
+                                                enum="WaterFrontType"></ngx-enum-select-form-group>
+                  </div>
+                  <div class="col-sm-6">
+                      <ngx-string-input-form-group title="Waterfront name"
+                                                   [parent]="listing.waterFront"
+                                                   property="name"></ngx-string-input-form-group>
+                  </div>
+                </div>
+              </nb-card-body>
+            </nb-card>
+          </div>
+          <div class="col-sm-6">
+            <nb-card>
+              <nb-card-header>Zoning</nb-card-header>
+              <nb-card-body>
+                <div class="row">
+                  <div class="col-sm-6">
+                    <ngx-enum-select-form-group [parent]="listing.zoning"
+                                                property="type"
+                                                title="Zoning type"
+                                                enum="ZoningType"></ngx-enum-select-form-group>
+                  </div>
+                  <div class="col-sm-6">
+                      <ngx-string-input-form-group title="Zoning description"
+                                                   [parent]="listing.zoning"
+                                                   property="description"></ngx-string-input-form-group>
+                  </div>
+                </div>
+              </nb-card-body>
+            </nb-card>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <ngx-listing-edit-parking [listing]="listing"></ngx-listing-edit-parking>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <ngx-listing-edit-photos [parent]="listing" property="photos"></ngx-listing-edit-photos>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <nb-card>
+              <nb-card-header>Description</nb-card-header>
+              <nb-card-body>
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label for="description"
+                             class="label">Description</label>
+                      <textarea type="text"
+                                nbInput
+                                fullWidth
+                                id="description"
+                                placeholder="Description"
+                                required
+                                name="description"
+                                [(ngModel)]="listing.description"
+                                #description="ngModel"></textarea>
+                      <div *ngIf="description.invalid && (description.dirty || description.touched)"
+                           class="errors">
+                        <div *ngIf="description.errors?.required"> Description is required. </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label for="additionalRemarks"
+                             class="label">Additional remarks</label>
+                      <textarea type="text"
+                                nbInput
+                                fullWidth
+                                id="additionalRemarks"
+                                placeholder="Additional Remarks"
+                                name="additionalRemarks"
+                                [(ngModel)]="listing.additionalRemarks"
+                                #additionalRemarks="ngModel"></textarea>
+                    </div>
+                  </div>
+                </div>
+              </nb-card-body>
+            </nb-card>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <ngx-listing-edit-alternate-url [alternateUrl]="listing.alternateURL"></ngx-listing-edit-alternate-url>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</ng-container>

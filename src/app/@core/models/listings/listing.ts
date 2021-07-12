@@ -1,0 +1,48 @@
+import * as moment from "moment";
+import { Address } from "./details/address";
+import { AlternateURL } from "./details/alternateURL";
+import { Building } from "./details/building";
+import { Land } from "./details/land";
+import { Maintenance } from "./details/maintenance";
+import { Parking } from "./details/parking";
+import { PropertyPhoto } from './details/PropertyPhoto';
+import { WaterFront } from "./details/waterFront";
+import { Zoning } from "./details/zoning";
+import { ListingSource } from "./enums/listingSource";
+import { AmenitiesNearby } from "./lookups/amenitiesNearby";
+import { Features } from "./lookups/features";
+import { MeasureUnit } from "./lookups/MeasureUnit";
+import { OwnershipType } from "./lookups/ownershipType";
+import { PaymentUnit } from "./lookups/paymentUnit";
+import { PropertyType } from "./lookups/propertyType";
+import { TransactionType } from "./lookups/transactionType";
+
+export interface Listing {
+    id: string;
+    featured: boolean;
+    disabled: boolean;
+    source: ListingSource;
+    address: Address;
+    externalId?: string;
+    mlsNumber: string;
+    lastUpdated: moment.Moment;
+    building: Building;
+    land: Land;
+    alternateURL?: AlternateURL;
+    ammenitiesNearBy?: AmenitiesNearby[];
+    features: Features[];
+    description: string;
+    maintenance?: Maintenance;
+    ownershipType: OwnershipType;
+    transactionType: TransactionType;
+    parkingSpaces?: Parking[];
+    parkingSpaceTotal?: number;
+    price: number;
+    pricePerTime?: PaymentUnit;
+    pricePerUnit?: MeasureUnit;
+    propertyType: PropertyType;
+    photos: PropertyPhoto[];
+    additionalRemarks?: string;
+    waterFront?: WaterFront;
+    zoning?: Zoning;
+}

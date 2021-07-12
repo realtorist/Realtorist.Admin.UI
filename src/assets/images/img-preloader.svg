@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     version="1.1"
+     viewBox="0 0 400 130"
+     preserveAspectRatio="xMidYMid meet">
+  <rect x="0"
+        y="0"
+        clip-path="url(#ewlt4n6cdi)"
+        width="100%"
+        height="100%"
+        style="fill: url(&quot;#0pbu8e4k6tuk&quot;);"></rect>
+  <defs>
+    <clipPath id="ewlt4n6cdi">
+      <rect _ngcontent-c2=""
+            height="100%"
+            rx="3"
+            ry="3"
+            width="100%"
+            x="0"
+            y="0"></rect>
+      <rect _ngcontent-c2=""
+            height="10"
+            rx="3"
+            ry="3"
+            width="220"
+            x="20"
+            y="20"></rect>
+      <rect _ngcontent-c2=""
+            height="10"
+            rx="3"
+            ry="3"
+            width="170"
+            x="20"
+            y="40"></rect>
+      <rect _ngcontent-c2=""
+            height="10"
+            rx="3"
+            ry="3"
+            width="250"
+            x="0"
+            y="60"></rect>
+      <rect _ngcontent-c2=""
+            height="10"
+            rx="3"
+            ry="3"
+            width="200"
+            x="20"
+            y="80"></rect>
+      <rect _ngcontent-c2=""
+            height="10"
+            rx="3"
+            ry="3"
+            width="80"
+            x="20"
+            y="100"></rect>
+    </clipPath>
+    <linearGradient id="0pbu8e4k6tuk">
+      <stop offset="0%"
+            stop-color="#f9f9f9">
+        <animate attributeName="offset"
+                 repeatCount="indefinite"
+                 values="-2; 1"
+                 dur="2s"></animate>
+      </stop>
+      <stop offset="50%"
+            stop-color="#ecebeb">
+        <animate attributeName="offset"
+                 repeatCount="indefinite"
+                 values="-1.5; 1.5"
+                 dur="2s"></animate>
+      </stop>
+      <stop offset="100%"
+            stop-color="#f9f9f9">
+        <animate attributeName="offset"
+                 repeatCount="indefinite"
+                 values="-1; 2"
+                 dur="2s"></animate>
+      </stop>
+    </linearGradient>
+  </defs>
+</svg>

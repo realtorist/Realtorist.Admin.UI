@@ -1,0 +1,414 @@
+<div class="row">
+    <div class="col-12">
+        <nb-card>
+            <nb-card-header>Buidling</nb-card-header>
+            <nb-card-body>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <ngx-enum-select-form-group [parent]="building"
+                                                    property="buildingType"
+                                                    title="Building type"
+                                                    enum="BuildingType"
+                                                    required
+                                                    multiple></ngx-enum-select-form-group>
+                    </div>
+                    <div class="col-sm-4">
+                        <ngx-numeric-input-form-group [parent]="building"
+                                                      property="storiesTotal"
+                                                      title="Stories"
+                                                      min="0"
+                                                      max="10000"
+                                                      step="0.5"></ngx-numeric-input-form-group>
+                    </div>
+                    <div class="col-sm-4">
+                        <ngx-numeric-input-form-group [parent]="building"
+                                                      property="totalBuildings"
+                                                      title="Total buildings"
+                                                      min="0"
+                                                      max="10000"></ngx-numeric-input-form-group>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <ngx-string-input-form-group title="Age"
+                                                     [parent]="building"
+                                                     property="age">
+                        </ngx-string-input-form-group>
+                    </div>
+                    <div class="col-sm-3">
+                        <ngx-numeric-input-form-group [parent]="building"
+                                                      property="constructedDate"
+                                                      title="Year built"
+                                                      min="1600"
+                                                      max="10000"></ngx-numeric-input-form-group>
+                    </div>
+                    <div class="col-sm-3">
+                        <ngx-string-input-form-group title="Renovation date"
+                                                     [parent]="building"
+                                                     property="renovatedDate">
+                        </ngx-string-input-form-group>
+                    </div>
+                    <div class="col-sm-3">
+                        <ngx-enum-select-form-group [parent]="building"
+                                                    property="architecturalStyle"
+                                                    title="Architectural style"
+                                                    enum="ArchitecturalStyle"
+                                                    multiple></ngx-enum-select-form-group>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <ngx-enum-select-form-group [parent]="building"
+                                                    property="amenities"
+                                                    title="Amenities"
+                                                    enum="Amenities"
+                                                    multiple></ngx-enum-select-form-group>
+                    </div>
+                    <div class="col-sm-4">
+                        <ngx-enum-select-form-group [parent]="building"
+                                                    property="viewType"
+                                                    title="View"
+                                                    enum="ViewType"
+                                                    multiple>
+                        </ngx-enum-select-form-group>
+                    </div>
+                    <div class="col-sm-4">
+                        <ngx-string-input-form-group title="Unit type"
+                                                     [parent]="building"
+                                                     property="unitType">
+                        </ngx-string-input-form-group>            
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <ngx-enum-select-form-group [parent]="building"
+                                                    property="fixture"
+                                                    title="Fixtures"
+                                                    enum="Fixture"
+                                                    multiple></ngx-enum-select-form-group>
+                    </div>
+                    <div class="col-sm-4">
+                        <ngx-enum-select-form-group [parent]="building"
+                                                    property="appliances"
+                                                    title="Appliances"
+                                                    enum="Appliances"
+                                                    multiple></ngx-enum-select-form-group>
+                    </div>
+                    <div class="col-sm-4">
+                        <ngx-enum-select-form-group [parent]="building"
+                                                    property="storageType"
+                                                    title="Storage type"
+                                                    enum="StorageType"
+                                                    multiple></ngx-enum-select-form-group>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <ngx-enum-select-form-group [parent]="building"
+                                                    property="basementDevelopment"
+                                                    title="Basement development"
+                                                    enum="BasementDevelopment"
+                                                    multiple>
+                        </ngx-enum-select-form-group>
+                    </div>
+                    <div class="col-sm-4">
+                        <ngx-enum-select-form-group [parent]="building"
+                                                    property="basementFeatures"
+                                                    title="Basement features"
+                                                    enum="BasementFeatures"
+                                                    multiple></ngx-enum-select-form-group>
+                    </div>
+                    <div class="col-sm-4">
+                        <ngx-enum-select-form-group [parent]="building"
+                                                    property="basementType"
+                                                    title="Basement type"
+                                                    enum="BasementType"
+                                                    multiple></ngx-enum-select-form-group>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <ngx-enum-select-form-group [parent]="building"
+                                                    property="constructionStatus"
+                                                    title="Construction status"
+                                                    enum="ConstructionStatus"></ngx-enum-select-form-group>
+                    </div>
+                    <div class="col-sm-4">
+                        <ngx-enum-select-form-group [parent]="building"
+                                                    property="constructionMaterial"
+                                                    title="Construction material"
+                                                    enum="ConstructionMaterial"
+                                                    multiple>
+                        </ngx-enum-select-form-group>
+                    </div>
+                    <div class="col-sm-4">
+                        <ngx-measurement-input-form-group [parent]="building"
+                                                          property="ceilingHeight"
+                                                          title="Ceiling height">
+                        </ngx-measurement-input-form-group>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <ngx-enum-select-form-group [parent]="building"
+                                                    property="constructionStyleAttachment"
+                                                    title="Construction attachment style"
+                                                    enum="ConstructionStyleAttachment">
+                        </ngx-enum-select-form-group>
+                    </div>
+                    <div class="col-sm-4">
+                        <ngx-enum-select-form-group [parent]="building"
+                                                    property="constructionStyleSplitLevel"
+                                                    title="Construction split-level style"
+                                                    enum="ConstructionStyleSplitLevel">
+                        </ngx-enum-select-form-group>
+                    </div>
+                    <div class="col-sm-4">
+                        <ngx-enum-select-form-group [parent]="building"
+                                                    property="constructionStyleOther"
+                                                    title="Construction other style"
+                                                    enum="ConstructionStyleOther"></ngx-enum-select-form-group>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <ngx-enum-select-form-group [parent]="building"
+                                                    property="coolingType"
+                                                    title="Cooling type"
+                                                    enum="CoolingType"
+                                                    multiple></ngx-enum-select-form-group>
+                    </div>
+                    <div class="col-sm-4">
+                        <ngx-enum-select-form-group [parent]="building"
+                                                    property="heatingType"
+                                                    title="Heating type"
+                                                    enum="HeatingType"
+                                                    multiple></ngx-enum-select-form-group>
+                    </div>
+                    <div class="col-sm-4">
+                        <ngx-enum-select-form-group [parent]="building"
+                                                    property="heatingFuel"
+                                                    title="Heating fuel"
+                                                    enum="HeatingFuel"
+                                                    multiple></ngx-enum-select-form-group>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <ngx-enum-select-form-group [parent]="building"
+                                                    property="foundationType"
+                                                    title="Foundation type"
+                                                    enum="FoundationType"
+                                                    multiple></ngx-enum-select-form-group>
+                    </div>
+                    <div class="col-sm-3">
+                        <ngx-enum-select-form-group [parent]="building"
+                                                    property="flooringType"
+                                                    title="Flooring type"
+                                                    enum="FlooringType"
+                                                    multiple></ngx-enum-select-form-group>
+                    </div>
+                    <div class="col-sm-3">
+                        <ngx-enum-select-form-group [parent]="building"
+                                                    property="roofMaterial"
+                                                    title="Roof material"
+                                                    enum="RoofMaterial"
+                                                    multiple></ngx-enum-select-form-group>
+                    </div>
+                    <div class="col-sm-3">
+                        <ngx-enum-select-form-group [parent]="building"
+                                                    property="roofStyle"
+                                                    title="Roof style"
+                                                    enum="RoofStyle"
+                                                    multiple></ngx-enum-select-form-group>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label for="fireplacePresent"
+                                   class="label">Fireplace</label>
+                            <div class="row">
+                                <div class="col-sm-2 nb-toggle-container">
+                                    <nb-toggle [(ngModel)]="building.fireplacePresent"
+                                               labelPosition="start"
+                                               id="fireplacePresent"
+                                               (checkedChange)="building.fireplaceTotal = undefined">
+                                    </nb-toggle>
+                                </div>
+                                <div class="col-sm-10"
+                                     *ngIf="!!building.fireplacePresent">
+                                    <ngx-numeric-input title="Number of fireplaces"
+                                                       min="0"
+                                                       max="10000"
+                                                       [parent]="building"
+                                                       property="fireplaceTotal"></ngx-numeric-input>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <ngx-enum-select-form-group [parent]="building"
+                                                    property="fireplaceType"
+                                                    title="Fireplace type"
+                                                    enum="FireplaceType"
+                                                    multiple></ngx-enum-select-form-group>
+                    </div>
+                    <div class="col-sm-4">
+                        <ngx-enum-select-form-group [parent]="building"
+                                                    property="fireplaceFuel"
+                                                    title="Fireplace fuel"
+                                                    enum="FireplaceFuel"
+                                                    multiple></ngx-enum-select-form-group>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <ngx-enum-select-form-group [parent]="building"
+                                                    property="fireProtection"
+                                                    title="Fire protection"
+                                                    enum="FireProtection"
+                                                    multiple></ngx-enum-select-form-group>
+                    </div>
+                    <div class="col-sm-4">
+                        <ngx-enum-select-form-group [parent]="building"
+                                                    property="poolType"
+                                                    title="Pool type"
+                                                    enum="PoolType"
+                                                    multiple></ngx-enum-select-form-group>
+                    </div>
+                    <div class="col-sm-4">
+                        <ngx-enum-select-form-group [parent]="building"
+                                                    property="poolFeatures"
+                                                    title="Pool features"
+                                                    enum="PoolFeatures"
+                                                    multiple></ngx-enum-select-form-group>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <ngx-measurement-input-form-group [parent]="building"
+                                                          property="sizeInterior"
+                                                          title="Interior size">
+                        </ngx-measurement-input-form-group>
+                    </div>
+                    <div class="col-sm-6">
+                        <ngx-measurement-input-form-group [parent]="building"
+                                                          property="sizeExterior"
+                                                          title="Exterior size">
+                        </ngx-measurement-input-form-group>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <ngx-measurement-input-form-group [parent]="building"
+                                                          property="sizeInteriorFinished"
+                                                          title="Finished interior size">
+                        </ngx-measurement-input-form-group>
+                    </div>
+                    <div class="col-sm-6">
+                        <ngx-measurement-input-form-group [parent]="building"
+                                                          property="totalFinishedArea"
+                                                          title="Total finished area size">
+                        </ngx-measurement-input-form-group>
+                    </div>
+                </div>
+            </nb-card-body>
+        </nb-card>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <nb-card>
+            <nb-card-header>Utilities</nb-card-header>
+            <nb-card-body>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <ngx-enum-select-form-group [parent]="building"
+                                                    property="utilityPower"
+                                                    title="Types of power utility"
+                                                    enum="UtilityPower"
+                                                    multiple></ngx-enum-select-form-group>
+                    </div>
+                    <div class="col-sm-6">
+                        <ngx-enum-select-form-group [parent]="building"
+                                                    property="utilityWater"
+                                                    title="Types of water utility"
+                                                    enum="UtilityWater"
+                                                    multiple></ngx-enum-select-form-group>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <label class="label">Available utilities</label>
+                        <ng2-smart-table [settings]="utilitiesTableSettings"
+                                         [source]="utilitiesSource"
+                                         id="utilities-table"
+                                         (createConfirm)="utilitiesConfirm($event)"
+                                         (editConfirm)="utilitiesConfirm($event)">
+                        </ng2-smart-table>
+                    </div>
+                </div>
+            </nb-card-body>
+        </nb-card>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <nb-card>
+            <nb-card-header>Rooms</nb-card-header>
+            <nb-card-body>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <ngx-numeric-input-form-group [parent]="building"
+                                                      property="bedroomsTotal"
+                                                      title="Number of bedrooms"
+                                                      min="0"
+                                                      max="10000"></ngx-numeric-input-form-group>
+                    </div>
+                    <div class="col-sm-4">
+                        <ngx-numeric-input-form-group [parent]="building"
+                                                      property="bedroomsAboveGround"
+                                                      title="Number of bedrooms above ground"
+                                                      min="0"
+                                                      max="10000"></ngx-numeric-input-form-group>
+                    </div>
+                    <div class="col-sm-4">
+                        <ngx-numeric-input-form-group [parent]="building"
+                                                      property="bedroomsBelowGround"
+                                                      title="Number of bedrooms below ground"
+                                                      min="0"
+                                                      max="10000"></ngx-numeric-input-form-group>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <ngx-numeric-input-form-group [parent]="building"
+                                                      property="bathroomTotal"
+                                                      title="Number of bathrooms"
+                                                      min="0"
+                                                      max="10000"></ngx-numeric-input-form-group>
+                    </div>
+                    <div class="col-sm-6">
+                        <ngx-numeric-input-form-group [parent]="building"
+                                                      property="halfBathTotal"
+                                                      title="Number of half-bathrooms"
+                                                      min="0"
+                                                      max="10000"></ngx-numeric-input-form-group>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <label class="label">Rooms</label>
+                        <ng2-smart-table [settings]="roomsTableSettings"
+                                         [source]="roomsSource"
+                                         id="rooms-table"
+                                         (createConfirm)="roomsConfirm($event)"
+                                         (editConfirm)="roomsConfirm($event)">
+                        </ng2-smart-table>
+                    </div>
+                </div>
+            </nb-card-body>
+        </nb-card>
+    </div>
+</div>

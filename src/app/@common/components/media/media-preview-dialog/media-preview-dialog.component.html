@@ -1,0 +1,55 @@
+<nb-card>
+  <nb-card-header>
+    <div class="row header-with-buttons">
+      <div class="col-6 header-content">
+        <div class="header-text">Media File</div>
+      </div>
+      <div class="col-6 control-buttons">
+        <button nbButton ghost (click)="cancel()" title="Close">
+          <nb-icon icon="close-outline" pack="eva"></nb-icon>
+        </button>
+      </div>
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+    <div class="row">
+      <div class="col-md-3">Name:</div>
+      <div class="col-md-9">{{ media.name }}</div>
+    </div>
+    <div class="row">
+      <div class="col-md-3">Url:</div>
+      <div class="col-md-9">
+        <nb-form-field>
+          <input type="text" readonly nbInput fullWidth [value]="media.url">
+          <button nbSuffix nbButton ghost (click)="copyUrl()" title="Copy to clipboard">
+            <nb-icon icon="copy-outline" pack="eva"></nb-icon>
+          </button>
+        </nb-form-field>
+    </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3">Size:</div>
+      <div class="col-md-9">{{ media.size | filesize }}</div>
+    </div>
+    <div class="row">
+      <div class="col-md-3">Created at:</div>
+      <div class="col-md-9">
+        {{ media.createdAt.format("dddd, MMMM Do YYYY, h:mm:ss a") }}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3">Preview:</div>
+      <div class="col-md-9">
+        <img [src]="media.url" class="image-preview" />
+      </div>
+    </div>
+  </nb-card-body>
+  <nb-card-footer>
+    <button class="cancel" nbButton status="info" (click)="cancel()">
+      Cancel
+    </button>
+    <button nbButton status="danger" (click)="delete()" *ngIf="canDelete">
+      Delete
+    </button>
+  </nb-card-footer>
+</nb-card>

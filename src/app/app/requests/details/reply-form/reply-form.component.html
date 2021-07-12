@@ -1,0 +1,32 @@
+<form name="replyForm" (ngSubmit)="submitReply(replyForm)" #replyForm="ngForm">
+  <nb-card [nbSpinner]="submitting">
+    <nb-card-header>
+      <div class="row">
+        <div class="col-10">Reply to {{ request.request.name }}</div>
+        <div class="col-2 text-right">
+          <button nbButton type="button" (click)="submitReply(replyForm)" nbSpinnerStatus="primary">Reply</button>
+        </div>
+      </div>
+    </nb-card-header>
+    <nb-card-body>
+      <div>
+        <textarea
+          rows="30"
+          name="message"
+          id="message"
+          required
+          [(ngModel)]="reply.message"
+          #message="ngModel"
+          [disabled]="submitting"
+          editor
+        >Hello!</textarea>
+      </div>
+      <div
+        *ngIf="message.invalid && (message.dirty || message.touched)"
+        class="alert alert-danger"
+      >
+        <div *ngIf="message.errors?.required">Message is required.</div>
+      </div>
+    </nb-card-body>
+  </nb-card>
+</form>

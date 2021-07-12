@@ -1,0 +1,69 @@
+<nb-card>
+    <nb-card-header>Additional Links</nb-card-header>
+    <nb-card-body>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="brochureLink" class="label">Brochure</label>
+                    <input type="text" nbInput fullWidth id="brochureLink" placeholder="Brochure"
+                        name="brochureLink"
+                        pattern="https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)"
+                        [(ngModel)]="alternateUrl.brochureLink" #brochureLink="ngModel" />
+                    <div *ngIf="brochureLink.invalid && (brochureLink.dirty || brochureLink.touched)" class="errors">
+                        <div *ngIf="brochureLink.errors?.pattern"> Must be a valid URL </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="mapLink" class="label">Map</label>
+                    <input type="text" nbInput fullWidth id="mapLink" placeholder="Map"
+                        name="mapLink"
+                        pattern="https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)"
+                        [(ngModel)]="alternateUrl.mapLink" #mapLink="ngModel" />
+                    <div *ngIf="mapLink.invalid && (mapLink.dirty || mapLink.touched)" class="errors">
+                        <div *ngIf="mapLink.errors?.pattern"> Must be a valid URL </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="soundLink" class="label">Sounds</label>
+                    <input type="text" nbInput fullWidth id="soundLink" placeholder="Sounds"
+                        name="soundLink"
+                        pattern="https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)"
+                        [(ngModel)]="alternateUrl.soundLink" #soundLink="ngModel" />
+                    <div *ngIf="soundLink.invalid && (soundLink.dirty || soundLink.touched)" class="errors">
+                        <div *ngIf="soundLink.errors?.pattern"> Must be a valid URL </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="photoLink" class="label">Photos</label>
+                    <input type="text" nbInput fullWidth id="photoLink" placeholder="Photos"
+                        name="photoLink"
+                        pattern="https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)"
+                        [(ngModel)]="alternateUrl.photoLink" #photoLink="ngModel" />
+                    <div *ngIf="photoLink.invalid && (photoLink.dirty || photoLink.touched)" class="errors">
+                        <div *ngIf="photoLink.errors?.pattern"> Must be a valid URL </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="videoLink" class="label">Video</label>
+                    <input type="text" nbInput fullWidth id="videoLink" placeholder="Video"
+                        name="videoLink"
+                        pattern="https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)"
+                        [(ngModel)]="alternateUrl.videoLink" #videoLink="ngModel" />
+                    <div *ngIf="videoLink.invalid && (videoLink.dirty || videoLink.touched)" class="errors">
+                        <div *ngIf="videoLink.errors?.pattern"> Must be a valid URL </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nb-card-body>
+</nb-card>

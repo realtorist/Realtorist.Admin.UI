@@ -1,0 +1,49 @@
+<div class="row">
+  <div class="col-sm-4">
+    <ngx-string-input-form-group title="Title"
+                                 [parent]="component.values"
+                                 property="title"></ngx-string-input-form-group>
+  </div>
+  <div class="col-sm-4">
+    <ngx-image-select-input-form-group title="Image"
+                                       [parent]="component.values"
+                                       property="image"></ngx-image-select-input-form-group>
+  </div>
+  <div class="col-sm-4">
+    <div class="form-group">
+      <label for="layout"
+             class="label">Layout</label>
+      <nb-select [(selected)]="component.values.reverse"
+                 fullWidth
+                 placeholder="Select..."
+                 name="layout"
+                 required
+                 id="layout">
+        <nb-option [value]="false">Image on the left</nb-option>
+        <nb-option [value]="true">Image on the right</nb-option>
+      </nb-select>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12">
+    <ngx-string-textarea-form-group title="Text"
+                                    [parent]="component.values"
+                                    property="text"
+                                    editor
+                                    required></ngx-string-textarea-form-group>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12">
+    <label class="label">Links</label>
+  </div>
+  <div class="col-12">
+    <ng2-smart-table [settings]="tableSettings"
+                     [source]="linksDataSource"
+                     id="links-table"
+                     (createConfirm)="confirm($event)"
+                     (editConfirm)="confirm($event)">
+    </ng2-smart-table>
+  </div>
+</div>

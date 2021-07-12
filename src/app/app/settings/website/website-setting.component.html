@@ -1,0 +1,174 @@
+<ng-container *ngIf="!!settings">
+  <form name="form"
+        class="input-form"
+        (ngSubmit)="save(form)"
+        #form="ngForm"
+        autocomplete="off">
+    <div class="row">
+      <div class="col-12">
+        <nb-card>
+          <nb-card-header>
+            <div class="row header-with-buttons">
+              <div class="col-md-10 col-sm-8 header-content">
+                <div class="header-text">Update website settings</div>
+              </div>
+
+              <div class="col-md-2 col-sm-4 control-buttons">
+                <nb-button-group status="primary">
+                  <button nbButton
+                          type="button"
+                          status="info"
+                          (click)="save(form)"
+                          title="Save"
+                          [disabled]="form.invalid || !isValidTimezone()"
+                          [nbSpinner]="loading">
+                    <nb-icon icon="save-outline"
+                             pack="eva"></nb-icon> Save
+                  </button>
+                </nb-button-group>
+              </div>
+            </div>
+          </nb-card-header>
+        </nb-card>
+      </div>
+    </div>
+    <div class="row"
+         [nbSpinner]="loading">
+
+      <div class="col-12">
+        <nb-card>
+          <nb-card-body>
+            <div class="row">
+              <div class="col-sm-4">
+                <ngx-string-input-form-group title="Website name"
+                                             [parent]="settings"
+                                             property="websiteName"
+                                             required>
+                </ngx-string-input-form-group>
+              </div>
+              <div class="col-sm-4">
+                <ngx-string-input-form-group title="Website address"
+                                             [parent]="settings"
+                                             property="websiteAddress"
+                                             pattern="^[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}$"
+                                             required>
+                </ngx-string-input-form-group>
+              </div>
+              <div class="col-sm-4">
+                <ngx-string-input-form-group title="Website title"
+                                             [parent]="settings"
+                                             property="websiteTitle"
+                                             required>
+                </ngx-string-input-form-group>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-4">
+                <ngx-image-select-input-form-group [parent]="settings"
+                                                   property="favicon"
+                                                   title="Website icon"
+                                                   required></ngx-image-select-input-form-group>
+              </div>
+              <div class="col-sm-4">
+                <ngx-image-select-input-form-group [parent]="settings"
+                                                   property="logo"
+                                                   title="Logo"></ngx-image-select-input-form-group>
+              </div>
+              <div class="col-sm-4">
+                <ngx-image-select-input-form-group [parent]="settings"
+                                                   property="alternativeLogo"
+                                                   title="Alternative Logo"></ngx-image-select-input-form-group>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                <ngx-string-input-form-group required
+                                             title="Brokerage"
+                                             [parent]="settings"
+                                             property="brokerage"></ngx-string-input-form-group>
+              </div>
+              <div class="col-sm-6">
+                <ngx-image-select-input-form-group [parent]="settings"
+                                                   property="brokerageLogo"
+                                                   title="Brokerage Logo"></ngx-image-select-input-form-group>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label class="label"
+                         for="input-timezone">Time zone</label>
+                  <input nbInput
+                         [(ngModel)]="settings.timezone"
+                         #timezone="ngModel"
+                         type="text"
+                         id="input-timezone"
+                         name="timezone"
+                         placeholder="Time zone"
+                         fullWidth
+                         fieldSize="large"
+                         [nbAutocomplete]="timeZoneAutoComplete"
+                         required>
+                  <ng-container *ngIf="timezone.invalid && timezone.touched">
+                    <p class="errors"
+                       *ngIf="timezone.errors?.required">
+                      Time zone is required!
+                    </p>
+                  </ng-container>
+                  <p class="errors"
+                     *ngIf="timezone.touched && !isValidTimezone()">
+                    Unknown time zone!
+                  </p>
+                  <nb-autocomplete #timeZoneAutoComplete>
+                
+                    <nb-option *ngFor="let timezone of getFilteredOptions(timezones, settings.timezone)"
+                               [value]="timezone">
+                      {{ timezone }}
+                    </nb-option>
+                
+                  </nb-autocomplete>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label class="label">Website keywords</label>
+                  <nb-tag-list (tagRemove)="onKeywordRemove($event)">
+                    <nb-tag *ngFor="let tag of settings.websiteKeywords"
+                            [text]="tag"
+                            removable></nb-tag>
+                    <input type="text"
+                           nbTagInput
+                           name="tag"
+                           #keywordInput
+                           (tagAdd)="onKeywordAdd($event)"
+                           fullWidth
+                           [focusInputOnValueChange]="false" />
+                  </nb-tag-list>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <ngx-string-textarea-form-group required
+                                                title="Website description"
+                                                [parent]="settings"
+                                                property="websiteDescription"></ngx-string-textarea-form-group>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <ngx-string-textarea-form-group required
+                                                title="Legal Disclaimer"
+                                                [parent]="settings"
+                                                editor
+                                                property="legalDisclaimer"></ngx-string-textarea-form-group>
+              </div>
+            </div>
+          </nb-card-body>
+        </nb-card>
+      </div>
+    </div>
+  </form>
+</ng-container>

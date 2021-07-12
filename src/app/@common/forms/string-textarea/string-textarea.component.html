@@ -1,0 +1,35 @@
+<ng-container *ngIf="!editor">
+       <textarea 
+                 nbInput
+                 fullWidth
+                 [id]="id"
+                 [placeholder]="title"
+                 [name]="property"
+                 [(ngModel)]="parent[property]"
+                 #input="ngModel"
+                 [required]="required"
+                 [rows]="rows || 10"
+                 (ngModelChange)="onChange.emit($event)"></textarea>
+       <div *ngIf="input.invalid && (input.dirty || input.touched)"
+            class="errors">
+              <div *ngIf="input.errors?.required">{{title}} should not be empty</div>
+       </div>
+</ng-container>
+<ng-container *ngIf="!!editor">
+       <textarea
+                 nbInput
+                 fullWidth
+                 [id]="id"
+                 [placeholder]="title"
+                 [name]="property"
+                 [(ngModel)]="parent[property]"
+                 #inputEditor="ngModel"
+                 [required]="required"
+                 [rows]="rows || 10"
+                 editor
+                 (ngModelChange)="onChange.emit($event)"></textarea>
+       <div *ngIf="inputEditor.invalid && (inputEditor.dirty || inputEditor.touched)"
+            class="errors">
+              <div *ngIf="inputEditor.errors?.required">{{title}} should not be empty</div>
+       </div>
+</ng-container>

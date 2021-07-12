@@ -1,0 +1,19 @@
+<input [type]="type"
+       nbInput
+       fullWidth
+       [id]="property"
+       [placeholder]="title"
+       [name]="property"
+       [(ngModel)]="parent[property]"
+       #input="ngModel"
+       [required]="required"
+       [pattern]="pattern"
+       [mask]="mask"
+       [email]="type === 'email'"
+       (ngModelChange)="onChange.emit($event)" />
+<div *ngIf="input.invalid && (input.dirty || input.touched)"
+     class="errors">
+    <div *ngIf="input.errors?.required">{{title}} should not be empty</div>
+    <div *ngIf="input.errors?.pattern">{{title}} is in wrong format</div>
+    <div *ngIf="input.errors?.email">{{title}} is not valid email address</div>
+</div>

@@ -1,0 +1,63 @@
+<nb-card>
+    <nb-card-header>Land</nb-card-header>
+    <nb-card-body>
+        <div class="row">
+            <div class="col-sm-6">
+                <ngx-measurement-input-form-group [parent]="land" property="sizeTotal" title="Size total"></ngx-measurement-input-form-group>
+            </div>
+            <div class="col-sm-6">
+                <ngx-string-input-form-group
+                    title="Irregular size"
+                    [parent]="land"
+                    property="sizeIrregular">
+                </ngx-string-input-form-group>    
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <ngx-measurement-input-form-group [parent]="land" property="sizeFrontage" title="Size frontage"></ngx-measurement-input-form-group>
+            </div>
+            <div class="col-sm-6">
+                <ngx-measurement-input-form-group [parent]="land" property="sizeDepth" title="Size depth"></ngx-measurement-input-form-group>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="acreage" class="label">Acreage</label>
+                    <nb-select [(selected)]="land.acreage" fullWidth placeholder="Select..." name="acreage" id="acreage">
+                        <nb-option [value]="undefined">Not Set</nb-option>
+                        <nb-option [value]="false">No</nb-option>
+                        <nb-option [value]="true">Yes</nb-option>
+                    </nb-select>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="divisible" class="label">Divisible</label>
+                    <nb-select [(selected)]="land.divisible" fullWidth placeholder="Select..." name="divisible" id="divisible">
+                        <nb-option [value]="undefined">Not Set</nb-option>
+                        <nb-option [value]="false">No</nb-option>
+                        <nb-option [value]="true">Yes</nb-option>
+                    </nb-select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <ngx-enum-select-form-group [parent]="land" property="frontsOn" title="Fronts on" enum="FrontsOn"></ngx-enum-select-form-group>
+            </div>
+            <div class="col-sm-6">
+                <ngx-enum-select-form-group [parent]="land" property="fenceType" title="Fence type" enum="FenceType" multiple></ngx-enum-select-form-group>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <ngx-enum-select-form-group [parent]="land" property="currentUse" title="Current use" enum="CurrentUse" multiple></ngx-enum-select-form-group>
+            </div>
+            <div class="col-sm-6">
+                <ngx-enum-select-form-group [parent]="land" property="sewer" title="Sewer" enum="Sewer" multiple></ngx-enum-select-form-group>
+            </div>
+        </div>
+    </nb-card-body>
+</nb-card>

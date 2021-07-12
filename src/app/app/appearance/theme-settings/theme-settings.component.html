@@ -1,0 +1,213 @@
+<ng-container *ngIf="!!settings">
+  <form name="form"
+        class="input-form"
+        (ngSubmit)="save(form)"
+        #form="ngForm"
+        autocomplete="off">
+    <div class="row">
+      <div class="col-12">
+        <nb-card>
+          <nb-card-header>
+            <div class="row header-with-buttons">
+              <div class="col-md-10 col-sm-8 header-content">
+                <div class="header-text">Theme settings</div>
+              </div>
+
+              <div class="col-md-2 col-sm-4 control-buttons">
+                <nb-button-group status="primary">
+                  <button nbButton
+                          type="button"
+                          status="info"
+                          (click)="save(form)"
+                          title="Save"
+                          [disabled]="form.invalid"
+                          [nbSpinner]="loading">
+                    <nb-icon icon="save-outline"
+                             pack="eva"></nb-icon> Save
+                  </button>
+                </nb-button-group>
+              </div>
+            </div>
+          </nb-card-header>
+        </nb-card>
+      </div>
+    </div>
+    <div class="row"
+         [nbSpinner]="loading">
+      <div class="col-sm-12">
+        <nb-card>
+          <nb-card-header>
+            Home page
+          </nb-card-header>
+          <nb-card-body>
+            <div class="row">
+              <div class="col-sm-4">
+                <ngx-string-input-form-group [parent]="settings"
+                                             property="heroTitle"
+                                             required
+                                             title="Hero title">
+                </ngx-string-input-form-group>
+              </div>
+              <div class="col-sm-4">
+                <ngx-string-input-form-group [parent]="settings"
+                                             property="heroSubTitle"
+                                             title="Hero sub title">
+                </ngx-string-input-form-group>
+              </div>
+              <div class="col-sm-4">
+                <ngx-image-select-input-form-group [parent]="settings"
+                                             property="heroLogo"
+                                             title="Hero logo">
+                </ngx-image-select-input-form-group>
+              </div>
+            </div>
+          </nb-card-body>
+        </nb-card>
+      </div>
+    </div>
+    <div class="row"
+         [nbSpinner]="loading">
+      <div class="col-sm-12">
+        <nb-card>
+          <nb-card-header>
+            Style overrides
+          </nb-card-header>
+          <nb-card-body>
+            <div class="row">
+              <div class="col-sm-3">
+                <ngx-color-picker-input-form-group [parent]="settings.styleOverrides"
+                                                   property="primary"
+                                                   title="Primary color">
+                </ngx-color-picker-input-form-group>
+              </div>
+              <div class="col-sm-3">
+                <ngx-color-picker-input-form-group [parent]="settings.styleOverrides"
+                                                   property="secondary"
+                                                   title="Secondary color">
+                </ngx-color-picker-input-form-group>
+              </div>
+              <div class="col-sm-3">
+                <ngx-color-picker-input-form-group [parent]="settings.styleOverrides"
+                                                   property="primary-text"
+                                                   title="Text's primary color">
+                </ngx-color-picker-input-form-group>
+              </div>
+              <div class="col-sm-3">
+                <ngx-color-picker-input-form-group [parent]="settings.styleOverrides"
+                                                   property="primary-alternative"
+                                                   title="Primary alternative color">
+                </ngx-color-picker-input-form-group>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-4">
+                <ngx-image-select-input-form-group [parent]="settings.styleOverrides"
+                                                   property="home-page-background"
+                                                   title="Home page background image">
+                </ngx-image-select-input-form-group>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <label for="home-page-background-backdrop-opacity"
+                         class="label">Home page background overlay opacity</label>
+                  <nb-form-field>
+                    <input type="text"
+                           nbInput
+                           fullWidth
+                           id="home-page-background-backdrop-opacity"
+                           placeholder="Home page background overlay opacity"
+                           name="home-page-background-backdrop-opacity"
+                           [(ngModel)]="settings.styleOverrides['home-page-background-backdrop-opacity']"
+                           #homeBackgroundBackdropOpacity="ngModel"
+                           type="number"
+                           min="0"
+                           max="100" />
+                    <span nbSuffix>%</span>
+                  </nb-form-field>
+                  <div *ngIf="homeBackgroundBackdropOpacity.invalid && (homeBackgroundBackdropOpacity.dirty || homeBackgroundBackdropOpacity.touched)"
+                       class="errors">
+                    <div *ngIf="homeBackgroundBackdropOpacity.errors?.min">Value should be greater or equal 0</div>
+                    <div *ngIf="homeBackgroundBackdropOpacity.errors?.max">Value should be less or equal 100</div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <ngx-color-picker-input-form-group [parent]="settings.styleOverrides"
+                                                   property="home-page-navbar-color"
+                                                   title="Home page navigation brand text color">
+                </ngx-color-picker-input-form-group>
+              </div>
+            </div>
+          </nb-card-body>
+        </nb-card>
+      </div>
+    </div>
+    <div class="row"
+         [nbSpinner]="loading">
+      <div class="col-12">
+        <nb-card>
+          <nb-card-header>
+            Footer menu
+          </nb-card-header>
+          <nb-card-body>
+            <div class="row">
+              <div class="col-12">
+                <ng2-smart-table [settings]="footerMenuTableSettings"
+                                 [source]="footerMenuDataSource"
+                                 id="footer-menu-table"
+                                 (createConfirm)="confirmMenu($event, 5)"
+                                 (editConfirm)="confirmMenu($event, 5)">
+                </ng2-smart-table>
+              </div>
+            </div>
+          </nb-card-body>
+        </nb-card>
+      </div>
+    </div>
+    <div class="row"
+         [nbSpinner]="loading">
+      <div class="col-12">
+        <nb-card>
+          <nb-card-header>
+            Header menu
+          </nb-card-header>
+          <nb-card-body>
+            <div class="row">
+              <div class="col-12">
+                <ng2-smart-table [settings]="headerMenuTableSettings"
+                                 [source]="headerMenuDataSource"
+                                 id="header-menu-table"
+                                 (createConfirm)="confirmMenu($event, 7)"
+                                 (editConfirm)="confirmMenu($event, 7)">
+                </ng2-smart-table>
+              </div>
+            </div>
+          </nb-card-body>
+        </nb-card>
+      </div>
+    </div>
+    <div class="row"
+         [nbSpinner]="loading">
+      <div class="col-12">
+        <nb-card>
+          <nb-card-header>
+            Additional CSS
+          </nb-card-header>
+          <nb-card-body>
+            <div class="row">
+              <div class="col-12">
+                <ngx-codemirror [(ngModel)]="settings.additionalCss"
+                                #CssCodeMirror
+                                [options]="{ lineNumbers: true, mode: 'text/css', theme: 'neat', styleActiveLine: true, matchBrackets: true, lineWrapping: true, extraKeys: {'Alt-Space': 'autocomplete'} }">
+                </ngx-codemirror>
+              </div>
+              <div class="col-12">
+                <small><strong>Hint:</strong> Press Alt+Space for suggestions</small>
+              </div>
+            </div>
+          </nb-card-body>
+        </nb-card>
+      </div>
+    </div>
+  </form>
+</ng-container>

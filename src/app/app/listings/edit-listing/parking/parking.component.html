@@ -1,0 +1,26 @@
+<nb-card>
+    <nb-card-header>Parking</nb-card-header>
+    <nb-card-body>
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group">
+                    <label for="parkingSpaceTotal" class="label">Total parking spaces</label>
+                    <input type="number" min="0" max="10000" nbInput fullWidth id="parkingSpaceTotal" placeholder="Name"
+                        name="parkingSpaceTotal" [(ngModel)]="listing.parkingSpaceTotal" #parkingSpaceTotal="ngModel" />
+                    <div *ngIf="parkingSpaceTotal.invalid && (parkingSpaceTotal.dirty || parkingSpaceTotal.touched)"
+                        class="errors">
+                        <div *ngIf="parkingSpaceTotal.errors?.min"> Value should be greater or equal zero</div>
+                        <div *ngIf="parkingSpaceTotal.errors?.max"> Value is too large</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <ng2-smart-table [settings]="parkingTableSettings" [source]="parkingSpacesSource" 
+                id="parking-table" (createConfirm)="parkingConfirm($event)" (editConfirm)="parkingConfirm($event)">
+                </ng2-smart-table>
+            </div>
+        </div>
+    </nb-card-body>
+</nb-card>

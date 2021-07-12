@@ -1,0 +1,142 @@
+<ng-container *ngIf="!!settings">
+  <form name="form"
+        class="input-form"
+        (ngSubmit)="save(form)"
+        #form="ngForm"
+        autocomplete="off">
+    <div class="row">
+      <div class="col-12">
+        <nb-card>
+          <nb-card-header>
+            <div class="row header-with-buttons">
+              <div class="col-md-10 col-sm-8 header-content">
+                <div class="header-text">Home page settings</div>
+              </div>
+
+              <div class="col-md-2 col-sm-4 control-buttons">
+                <nb-button-group status="primary">
+                  <button nbButton
+                          type="button"
+                          status="info"
+                          (click)="save(form)"
+                          title="Save"
+                          [disabled]="form.invalid"
+                          [nbSpinner]="loading">
+                    <nb-icon icon="save-outline"
+                             pack="eva"></nb-icon> Save
+                  </button>
+                </nb-button-group>
+              </div>
+            </div>
+          </nb-card-header>
+        </nb-card>
+      </div>
+    </div>
+    <div class="row"
+         [nbSpinner]="loading">
+      <div class="col-12">
+        <nb-card>
+          <nb-card-header>
+            Components
+          </nb-card-header>
+          <nb-card-body>
+            <div class="row">
+              <div class="col-12">
+                <label class="label">Available components</label>
+              </div>
+              <div class="col-12">
+                <div dragula="HomePageComponets"
+                     class="tag-wrapper"
+                     [(dragulaModel)]="availableComponents"
+                     id="left">
+                  <nb-tag *ngFor="let component of availableComponents"
+                          [removable]="false"
+                          [text]="homePageComponentsTypesLabels[component.type]"
+                          class="handle"></nb-tag>
+                </div>
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col-12">
+                <label class="label">Components in use</label>
+              </div>
+              <div class="col-12">
+                <nb-accordion dragula="HomePageComponets"
+                              [(dragulaModel)]="settings.components"
+                              class="page-components"
+                              id="right">
+                  <nb-accordion-item *ngFor="let component of settings.components">
+                    <nb-accordion-item-header>
+                      <div class="row w-100">
+                        <div class="col-10 handle">
+                          {{ homePageComponentsTypesLabels[component.type] }}
+                        </div>
+                        <div class="col-2 control-button">
+                          <button type="button"
+                                  nbButton
+                                  status="danger"
+                                  size="small"
+                                  (click)="removeHomePageComponent(component)">
+                            <nb-icon pack="eva"
+                                     icon="trash-2-outline"></nb-icon>
+                          </button>
+                        </div>
+                      </div>
+                    </nb-accordion-item-header>
+                    <nb-accordion-item-body [ngSwitch]="component.type">
+                      <ng-container *ngSwitchCase="homePageComponentsTypes.FeaturedListings">
+                        <ngx-featured-listings-page-component [component]="component">
+                        </ngx-featured-listings-page-component>
+                      </ng-container>
+                      <ng-container *ngSwitchCase="homePageComponentsTypes.Testimonials">
+                        <ngx-testimonials-page-component [component]="component">
+                        </ngx-testimonials-page-component>
+                      </ng-container>
+                      <ng-container *ngSwitchCase="homePageComponentsTypes.CallToAction">
+                        <ngx-call-to-action-page-component [component]="component">
+                        </ngx-call-to-action-page-component>
+                      </ng-container>
+                      <ng-container *ngSwitchCase="homePageComponentsTypes.TwoColumnsWithImage">
+                        <ngx-two-columns-with-image-page-component [component]="component">
+                          </ngx-two-columns-with-image-page-component>
+                      </ng-container>
+                      <ng-container *ngSwitchCase="homePageComponentsTypes.TwoColumns">
+                        <ngx-two-columns-page-component [component]="component">
+                          </ngx-two-columns-page-component>
+                      </ng-container>
+                      <ng-container *ngSwitchCase="homePageComponentsTypes.OneColumn">
+                        <ngx-one-column-page-component [component]="component">
+                          </ngx-one-column-page-component>
+                      </ng-container>
+                      <ng-container *ngSwitchCase="homePageComponentsTypes.HomeWorth">
+                        <ngx-home-worth-page-component [component]="component">
+                        </ngx-home-worth-page-component>
+                      </ng-container>
+                      <ng-container *ngSwitchCase="homePageComponentsTypes.Blog">
+                        <ngx-blog-page-component [component]="component"></ngx-blog-page-component>
+                      </ng-container>
+                      <ng-container *ngSwitchCase="homePageComponentsTypes.ContactForm">
+                        <ngx-contact-form-page-component [component]="component">
+                        </ngx-contact-form-page-component>
+                      </ng-container>
+                      <ng-container *ngSwitchCase="homePageComponentsTypes.ContactFormWithSidebar">
+                        <ngx-contact-form-page-component [component]="component">
+                        </ngx-contact-form-page-component>
+                      </ng-container>
+                      <ng-container *ngSwitchCase="homePageComponentsTypes.Steps">
+                        <ngx-steps-page-component [component]="component"></ngx-steps-page-component>
+                      </ng-container>
+                      <ng-container *ngSwitchCase="homePageComponentsTypes.Services">
+                        <ngx-services-page-component [component]="component"></ngx-services-page-component>
+                      </ng-container>
+                    </nb-accordion-item-body>
+                  </nb-accordion-item>
+                </nb-accordion>
+              </div>
+            </div>
+          </nb-card-body>
+        </nb-card>
+      </div>
+    </div>
+  </form>
+</ng-container>

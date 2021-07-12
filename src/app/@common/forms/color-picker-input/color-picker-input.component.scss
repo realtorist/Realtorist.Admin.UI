@@ -1,0 +1,16 @@
+@import "../../../@theme/styles/themes";
+
+
+    :host::ng-deep {
+        .nb-form-field-control-with-prefix.nb-form-field-control-with-suffix {
+            input[nbInput].size-medium {
+                padding-left: 2.75rem;
+            }
+        }
+
+        .nb-form-field-addon.nb-form-field-prefix-medium.nb-form-field-addon-basic {
+            button[nbPrefix] {
+                border-color: nb-theme(border-basic-color-4);
+            }
+        }
+    }

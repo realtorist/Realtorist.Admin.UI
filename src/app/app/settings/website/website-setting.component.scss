@@ -1,0 +1,12 @@
+@import "../../../@theme/styles/themes";
+
+@include nb-install-component() {
+}
+
+.avatar-wrapper {
+  text-align: center;
+  img.avatar {
+    max-width: 100%;
+    max-height: 300px;
+  }
+}

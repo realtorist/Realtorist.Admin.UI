@@ -1,0 +1,110 @@
+@import "./themes";
+
+@mixin nb-overrides() {
+  nb-select.size-medium button {
+    padding: 0.4375rem 2.2rem 0.4375rem 1.125rem !important;
+
+    nb-icon {
+      right: 0.41rem !important;
+    }
+  }
+
+  [nbInput]:not(.input-full-width) {
+    max-width: none !important;
+  }
+
+  .input-group {
+    > [nbInput] {
+      flex: 1 1 auto;
+      width: 1%;
+      position: relative;
+    }
+
+    .input-group-text {
+      border-color: nb-theme(border-basic-color-4);
+      background: nb-theme(background-basic-color-1);
+      color: nb-theme(text-basic-color);
+
+      > nb-checkbox,
+      > nb-toggle {
+        display: flex;
+        align-content: center;
+
+        > label {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+
+  .sun-editor {
+    p, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+      color: #000;
+      line-height: unset;
+    }
+  }
+
+  .nb-toggle-container {
+    align-self: center;
+    display: flex;
+
+    nb-toggle {
+      > label {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  form.input-form {
+    .errors {
+      color: red;
+      margin-top: 10px;
+    }
+    input {
+      //color: $input-text;
+      background: 0;
+      background-color: rgba(0, 0, 0, 0);
+      background-position: center bottom, center calc(99%) !important;
+      background-repeat: no-repeat !important;
+      background-size: 0 2px, 100% 1px !important;
+      transition: all 0.3s ease-in-out;
+
+      &:focus {
+        background-image: linear-gradient(#707cd2, #707cd2),
+          linear-gradient(rgba(120, 130, 140, 0.13), rgba(120, 130, 140, 0.13));
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
+        float: none;
+        background-size: 100% 2px, 100% 1px !important;
+        outline: 0;
+        //color: #525f7f;
+      }
+
+      &.ng-invalid {
+        &.ng-touched {
+          border-color: red;
+        }
+
+        &:focus {
+          border: 0;
+          background-image: linear-gradient(red, red),
+            linear-gradient(rgba(120, 130, 140, 0.13), rgba(120, 130, 140, 0.13)) !important;
+        }
+      }
+    }
+  }
+
+  li.CodeMirror-hint {
+    margin: 0;
+    padding: 10px 4px;
+    border-radius: 2px;
+    white-space: pre;
+    color: black;
+    cursor: pointer;
+    &-active {
+      background: $primary;
+      color: white;
+    }
+  }
+}
