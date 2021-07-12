@@ -140,6 +140,12 @@ export class PageEditFormComponent implements OnInit, OnDestroy {
           `Page '${this.page.title}' was successfully saved`,
           "Saved!"
         );
+      }, (error) => {
+        this.loading = false;
+        this.toastrService.danger(
+          `Something went wrong. Please try again`,
+          "Error!"
+        );
       });
     } else {
       this.api.addPage(this.page).subscribe((id) => {
@@ -151,6 +157,12 @@ export class PageEditFormComponent implements OnInit, OnDestroy {
         this.toastrService.success(
           `Page '${this.page.title}' was successfully created`,
           "Saved!"
+        );
+      }, (error) => {
+        this.loading = false;
+        this.toastrService.danger(
+          `Something went wrong. Please try again`,
+          "Error!"
         );
       });
     }

@@ -39,6 +39,12 @@ export class GeoCodingSettingsComponent implements OnInit {
         `Settings were successfully saved`,
         "Saved!"
       );
+    }, (error) => {
+      this.loading = false;
+      this.toastrService.danger(
+        `Something went wrong. Please try again`,
+        "Error!"
+      );
     });
   }
 }

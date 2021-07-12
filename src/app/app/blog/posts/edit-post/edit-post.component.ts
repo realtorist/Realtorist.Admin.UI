@@ -91,6 +91,12 @@ export class PostEditFormComponent implements OnInit {
           `Post '${this.post.title}' was successfully saved`,
           "Saved!"
         );
+      }, (error) => {
+        this.loading = false;
+        this.toastrService.danger(
+          `Something went wrong. Please try again`,
+          "Error!"
+        );
       });
     } else {
       this.api.addPost(this.post).subscribe((id) => {
@@ -102,6 +108,12 @@ export class PostEditFormComponent implements OnInit {
         this.toastrService.success(
           `Post '${this.post.title}' was successfully created`,
           "Saved!"
+        );
+      }, (error) => {
+        this.loading = false;
+        this.toastrService.danger(
+          `Something went wrong. Please try again`,
+          "Error!"
         );
       });
     }

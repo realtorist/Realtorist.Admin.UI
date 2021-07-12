@@ -64,6 +64,12 @@ export class ListingEditFormComponent implements OnInit {
           )}' was successfully saved`,
           "Saved!"
         );
+      }, (error) => {
+        this.loading = false;
+        this.toastrService.danger(
+          `Something went wrong. Please try again`,
+          "Error!"
+        );
       });
     } else {
       this.api.addListing(this.listing).subscribe((id) => {
@@ -77,6 +83,12 @@ export class ListingEditFormComponent implements OnInit {
             this.listing.address
           )}' was successfully created`,
           "Saved!"
+        );
+      }, (error) => {
+        this.loading = false;
+        this.toastrService.danger(
+          `Something went wrong. Please try again`,
+          "Error!"
         );
       });
     }

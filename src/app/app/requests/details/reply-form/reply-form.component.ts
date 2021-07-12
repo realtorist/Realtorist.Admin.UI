@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { NgForm } from "@angular/forms";
+import { NbToastrService } from '@nebular/theme';
 import { ICustomerRequestsApi } from "../../../../@core/abstractions/customer-requests.api";
 import { CustomerRequest } from "../../../../@core/models/requests/customerRequest";
 import { Reply } from "../../../../@core/models/requests/reply";
@@ -18,7 +19,7 @@ export class CustomerRequestReplyFormComponent {
   };
   submitting = false;
 
-  constructor(private readonly api: ICustomerRequestsApi) {
+  constructor(private readonly api: ICustomerRequestsApi, private readonly toastrService: NbToastrService) {
   }
 
   resetReply() {
@@ -38,6 +39,12 @@ export class CustomerRequestReplyFormComponent {
         this.submitted.emit();
         this.resetReply();
         form.resetForm();
+      }, (error) => {
+        this.submitting = false;
+        this.toastrService.danger(
+          `Something went wrong. Please try again`,
+          "Error!"
+        );
       });
   }
 }

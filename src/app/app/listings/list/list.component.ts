@@ -153,14 +153,14 @@ export class ListingsListComponent implements AfterViewInit {
       })
       .onClose.subscribe((result) => {
         if (result) {
-          // this.api.deletePage(page.id).subscribe((_) => {
-          //   this.toastrService.success(
-          //     `Page '${page.title}' was deleted`,
-          //     "Page deleted"
-          //   );
+          this.api.deleteListing(listing.id).subscribe((_) => {
+            this.toastrService.success(
+              `Listing '${listing.address.streetAddress}' was deleted`,
+              "Listing deleted"
+            );
 
-          //   this.source.refresh();
-          // });
+            this.source.refresh();
+          });
         }
       });
   }
