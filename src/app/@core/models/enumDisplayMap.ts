@@ -1,3 +1,4 @@
+import { ListingSource } from './listings/enums/listingSource';
 import { addLookupValuesToDisplayMap } from "./listings/lookups/displayValues"
 
 export interface IEnumDisplayMap {
@@ -6,8 +7,8 @@ export interface IEnumDisplayMap {
 
 export const EnumDisplayMap : IEnumDisplayMap = {
     ListingSource: {
-        0: 'User',
-        1: 'CREA'
+        [ListingSource.Manual]: 'User',
+        [ListingSource.Crea]: 'CREA'
     }
 }
 

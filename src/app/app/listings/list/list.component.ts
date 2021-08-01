@@ -117,6 +117,11 @@ export class ListingsListComponent implements AfterViewInit {
             return cell.format("dddd, MMMM Do YYYY, h:mm:ss a");
           },
         },
+        views: {
+          title: "Views",
+          filter: false,
+          type: "string",
+        },
         featured: {
           title: "Actions",
           type: "custom",

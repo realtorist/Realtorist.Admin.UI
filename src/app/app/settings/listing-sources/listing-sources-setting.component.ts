@@ -5,6 +5,7 @@ import {
 } from "@nebular/theme";
 import * as moment from 'moment';
 import { LocalDataSource } from 'ng2-smart-table';
+import { EmptyCellEditComponent } from '../../../@common/components/table/emptyCellEditorComponent';
 import { TimeCellEditComponent } from '../../../@common/components/table/timeCellEditComponent';
 import { TimeCellRenderComponent } from '../../../@common/components/table/timeCellRenderComponent';
 import { ISettingsApi } from '../../../@core/abstractions/settings.api';
@@ -13,6 +14,7 @@ import { ListingSourceSetting } from '../../../@core/models/settings/listingSour
 import { SettingTypes } from '../../../@core/models/settings/settingTypes';
 import { ConfirmObject } from '../../../@core/models/smartTable/confirmObject';
 import { createLocalDataSource, defaultInlineTableSettings, enumColumn, numberColumn, stringColumn } from '../../../@core/models/smartTable/inlineTableSettings';
+import { ListingSourceAdditionalActionComponent } from './additionalAction.component';
 
 @Component({
   selector: "ngx-listing-sources-setting",
@@ -75,6 +77,16 @@ export class ListingSourcesSettingsComponent implements OnInit {
       type: 'custom',
       filter: false,
       renderComponent: TimeCellRenderComponent
+    },
+    actions: {
+      title: '',
+      filter: false,
+      editor: {
+        type: 'custom',
+        component: EmptyCellEditComponent
+      },
+      type: 'custom',
+      renderComponent: ListingSourceAdditionalActionComponent
     }
   });
 

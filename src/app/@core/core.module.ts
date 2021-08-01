@@ -23,6 +23,8 @@ import { ISettingsApi } from './abstractions/settings.api';
 import { SettingsApi } from './implementations/settings.api';
 import { AuthGuard } from './auth-guard.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { IEventsApi } from './abstractions/events.api';
+import { EventsApi } from './implementations/events.api';
 
 const socialLinks = [
   {
@@ -45,6 +47,7 @@ const socialLinks = [
 const DATA_SERVICES = [
   { provide: ICustomerRequestsApi, useClass: CustomerRequestsApi },
   { provide: IBlogApi, useClass: BlogApi },
+  { provide: IEventsApi, useClass: EventsApi },
   { provide: IMediaApi, useClass: MediaApi },
   { provide: IPagesApi, useClass: PagesApi },
   { provide: IListingsApi, useClass: ListingsApi },

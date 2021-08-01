@@ -11,7 +11,7 @@ import { ViewCell } from "ng2-smart-table";
           {{ trimValue() }}
         </nb-accordion-item-header>
         <nb-accordion-item-body>
-          {{ value }}
+          <div [innerHtml]="replaceNewLines()"></div>
         </nb-accordion-item-body>
       </nb-accordion-item>
     </nb-accordion>
@@ -20,7 +20,7 @@ import { ViewCell } from "ng2-smart-table";
     </div>
   `,
 })
-export class CommentMessageComponent implements ViewCell, OnInit {
+export class LargeAccordionMessageComponent implements ViewCell, OnInit {
   readonly minLengthForAccordion = 30;
 
   @Input() value: string;
@@ -34,5 +34,9 @@ export class CommentMessageComponent implements ViewCell, OnInit {
     return this.value && this.value.length > this.minLengthForAccordion
       ? this.value.substr(0, this.minLengthForAccordion) + "..."
       : this.value;
+  }
+
+  replaceNewLines(): string {
+    return this.value ? this.value.replace(/\n/g, '<br>') : '';
   }
 }

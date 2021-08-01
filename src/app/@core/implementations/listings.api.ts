@@ -5,6 +5,7 @@ import { environment } from "../../../environments/environment";
 import { IListingsApi } from "../abstractions/listings.api";
 import { Listing } from "../models/listings/listing";
 import { Page } from "../models/pages/page";
+import { ListingSourceSetting } from '../models/settings/listingSourceSetting';
 import { apiServerUrl } from './serverUrl';
 
 @Injectable()
@@ -35,5 +36,8 @@ export class ListingsApi extends IListingsApi {
     }
     addListing(listing: Listing): Observable<string> {
         return this.httpClient.put<string>(this.apiBaseUrl, listing);
+    }
+    launchUpdate(source: ListingSourceSetting): Observable<any> {
+        return this.httpClient.post<HttpResponse<any>>(this.apiBaseUrl + 'update', source);
     }
 }

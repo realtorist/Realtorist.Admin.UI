@@ -4,7 +4,7 @@ import * as moment from "moment";
 import { ConfirmDeleteDialogComponent } from "../../../../@common/components/confirm-delete-dialog/confirm-delete-dialog.component";
 import { IBlogApi } from "../../../../@core/abstractions/blog.api";
 import { CommentsAdditionalActionComponent } from "./additionalAction.component";
-import { CommentMessageComponent } from "./commentMessage.component";
+import { LargeAccordionMessageComponent } from "../../../../@common/components/table/largeAccordionMessage.component";
 import { Comment } from "../../../../@core/models/blog/comment";
 import { IDataSourceProvider } from "../../../../@core/abstractions/dataSourceProvider";
 import { DataSource } from "ng2-smart-table/lib/lib/data-source/data-source";
@@ -68,7 +68,7 @@ export class CommentsListComponent implements OnInit {
         message: {
           title: "Message",
           type: "custom",
-          renderComponent: CommentMessageComponent,
+          renderComponent: LargeAccordionMessageComponent,
         },
         id: {
           title: "Actions",

@@ -34,8 +34,10 @@ export class WebsiteSettingsComponent implements OnInit {
 
   ngOnInit(): void {
     this.api.getSetting<WebsiteSettings>(SettingTypes.Website)
-      .subscribe(settins => {
-        this.settings = settins || {} as WebsiteSettings;
+      .subscribe(settings => {
+        this.settings = settings || {} as WebsiteSettings;
+        this.settings.websiteKeywords = this.settings.websiteKeywords ?? [];
+        this.settings.listingOfficesToAutoFavouriteListings = this.settings.listingOfficesToAutoFavouriteListings ?? [];
       })
   }
 
@@ -72,16 +74,16 @@ export class WebsiteSettingsComponent implements OnInit {
     });
   }
 
-  onKeywordRemove(tagToRemove: NbTagComponent): void {
-    const index = this.settings.websiteKeywords.indexOf(tagToRemove.text);
+  onTagRemove(tagToRemove: NbTagComponent, propertyName: string): void {
+    const index = this.settings[propertyName].indexOf(tagToRemove.text);
     if (index >= 0) {
-      this.settings.websiteKeywords.splice(index, 1);
+      this.settings[propertyName].splice(index, 1);
     }
   }
 
-  onKeywordAdd({ value, input }: NbTagInputAddEvent): void {
+  onTagAdd({ value, input }: NbTagInputAddEvent, propertyName: string): void {
     if (value) {
-      this.settings.websiteKeywords.push(value);
+      this.settings[propertyName].push(value);
     }
     input.nativeElement.value = "";
     input.nativeElement.focus();

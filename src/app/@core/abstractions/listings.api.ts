@@ -2,6 +2,7 @@ import { HttpResponse } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { Listing } from "../models/listings/listing";
 import { Page } from "../models/pages/page";
+import { ListingSourceSetting } from '../models/settings/listingSourceSetting';
 
 export abstract class  IListingsApi {
     abstract getListing(id: string): Observable<Listing>;
@@ -10,4 +11,5 @@ export abstract class  IListingsApi {
     abstract addListing(listing: Listing): Observable<string>;
     abstract markAsFeatured(id: string, featured: boolean): Observable<any>;
     abstract markAsDisabled(id: string, disabled: boolean): Observable<any>;
+    abstract launchUpdate(source: ListingSourceSetting): Observable<any>;
 }

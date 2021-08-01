@@ -11,4 +11,7 @@ export interface WebsiteSettings {
     websiteDescritpion: string;
     legalDisclaimer: string;
     websiteKeywords: string[];
+    accountRequired: boolean;
+    socialSharingImage: string;
+    listingOfficesToAutoFavouriteListings: string[];
 }

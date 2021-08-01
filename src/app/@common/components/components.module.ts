@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { FileUploadModule } from "@iplab/ngx-file-upload";
-import { NbButtonGroupModule, NbButtonModule, NbCardModule, NbDialogModule, NbFormFieldModule, NbIconModule, NbInputModule, NbSelectModule, NbSpinnerModule, NbTimepickerModule, NbToggleModule } from "@nebular/theme";
+import { NbAccordionModule, NbButtonGroupModule, NbButtonModule, NbCardModule, NbDialogModule, NbFormFieldModule, NbIconModule, NbInputModule, NbSelectModule, NbSpinnerModule, NbTimepickerModule, NbToggleModule } from "@nebular/theme";
 import { NgxPaginationModule } from "ngx-pagination";
 import { ThemeModule } from "../../@theme/theme.module";
 import { ConfirmDeleteDialogComponent } from "./confirm-delete-dialog/confirm-delete-dialog.component";
@@ -25,6 +25,7 @@ import { ImagePreloader } from './media/image-preloader.directive';
 import { TimeCellRenderComponent } from './table/timeCellRenderComponent';
 import { TimeCellEditComponent } from './table/timeCellEditComponent';
 import { NbMomentDateModule } from '@nebular/moment';
+import { LargeAccordionMessageComponent } from './table/largeAccordionMessage.component';
 
 @NgModule({
   imports: [
@@ -39,6 +40,7 @@ import { NbMomentDateModule } from '@nebular/moment';
     NbTimepickerModule,
     NbMomentDateModule,
     Ng2SmartTableModule,
+    NbAccordionModule,
     ThemeModule,
     NbDialogModule.forChild(),
     NgxPaginationModule,
@@ -78,6 +80,7 @@ import { NbMomentDateModule } from '@nebular/moment';
     TimeCellRenderComponent,
     TimeCellEditComponent,
     EnumRenderComponent,
+    LargeAccordionMessageComponent,
     OrderAdditionalActionComponent,
     ImagePreloader,
   ],

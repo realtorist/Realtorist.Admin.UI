@@ -1,0 +1,21 @@
+@import "../../../@theme/styles/themes";
+
+:host::ng-deep {
+    table {
+      tbody {
+        tr {
+          &.disabled {
+            td {
+              text-decoration-line: line-through;
+            }
+          }
+
+          td {
+              img.listing-photo {
+                  max-width: 80px;
+              }
+          }
+        }
+      }
+    }
+  }

@@ -1,12 +1,12 @@
 <div class="row">
-  <div class="col-sm-6">
+  <div class="col-sm-4">
     <ngx-string-input-form-group
       title="Title"
       [parent]="component.values"
       property="title"
       required></ngx-string-input-form-group>
   </div>
-  <div class="col-sm-6">
+  <div class="col-sm-4">
     <ngx-numeric-input-form-group title="Maximum number of listings to show"
                                  [parent]="component.values"
                                  property="max"
@@ -14,5 +14,11 @@
                                  max="10"
                                  required>
     </ngx-numeric-input-form-group>
+  </div>
+  <div class="col-sm-4">
+    <div class="form-group">
+      <label class="label">Take random listings if not enough featured</label>
+      <div><nb-toggle [(ngModel)]="component.values.takeRandomIfNotEnough"></nb-toggle></div>
+    </div>
   </div>
 </div>

@@ -4,7 +4,8 @@ export enum CustomerRequestType {
     Showing,
     NeighbourhoodInformation,
     RecentSalesInArea,
-    WhatsMyHouseWorths
+    WhatsMyHouseWorths,
+    CreateAccount
 }
 
 export const getCustomerRequestTypeDisplayString = (type: CustomerRequestType) => {
@@ -25,7 +26,10 @@ export const getCustomerRequestTypeDisplayString = (type: CustomerRequestType) =
                 return 'Recent Sales In Area';
     
         case CustomerRequestType.WhatsMyHouseWorths:
-                return 'Whats My House Worths';
+            return 'Whats My House Worths';
+
+        case CustomerRequestType.CreateAccount:
+            return 'Create account';
 
         default:
             throw `Unknown CustomerRequestType type: ${type}`;

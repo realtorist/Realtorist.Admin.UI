@@ -11,7 +11,6 @@ import { PostEditFormComponent } from './posts/edit-post/edit-post.component';
 import { PostsAdditionalActionComponent } from './posts/list/additionalAction.component';
 import { CommentLinkComponent } from './posts/list/commentLink';
 import { CommentsAdditionalActionComponent } from './shared/comments-list/additionalAction.component';
-import { CommentMessageComponent } from './shared/comments-list/commentMessage.component';
 import { CommentsListComponent } from './shared/comments-list/comments.component';
 import { PostLinkComponent } from './shared/comments-list/postLink.component';
 
@@ -50,7 +49,6 @@ import { PostLinkComponent } from './shared/comments-list/postLink.component';
     PostsAdditionalActionComponent,
     CommentsListComponent,
     CommentsAdditionalActionComponent,
-    CommentMessageComponent,
     CommentLinkComponent,
     PostLinkComponent,
     PostEditFormComponent

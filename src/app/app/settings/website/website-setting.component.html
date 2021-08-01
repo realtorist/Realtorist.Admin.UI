@@ -94,7 +94,12 @@
               </div>
             </div>
             <div class="row">
-              <div class="col-sm-12">
+              <div class="col-sm-4">
+                <ngx-image-select-input-form-group [parent]="settings"
+                                                   property="socialSharingImage"
+                                                   title="Image for link preview in social networks"></ngx-image-select-input-form-group>
+              </div>
+              <div class="col-sm-4">
                 <div class="form-group">
                   <label class="label"
                          for="input-timezone">Time zone</label>
@@ -108,6 +113,7 @@
                          fullWidth
                          fieldSize="large"
                          [nbAutocomplete]="timeZoneAutoComplete"
+                         [focusInputOnValueChange]="false"
                          required>
                   <ng-container *ngIf="timezone.invalid && timezone.touched">
                     <p class="errors"
@@ -129,12 +135,20 @@
                   </nb-autocomplete>
                 </div>
               </div>
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <label class="label">Require account to view properties</label>
+                  <div>
+                    <nb-toggle [(ngModel)]="settings.accountRequired"></nb-toggle>
+                  </div>
+                </div>
+              </div>
             </div>
             <div class="row">
               <div class="col-sm-12">
                 <div class="form-group">
                   <label class="label">Website keywords</label>
-                  <nb-tag-list (tagRemove)="onKeywordRemove($event)">
+                  <nb-tag-list (tagRemove)="onTagRemove($event, 'websiteKeywords')">
                     <nb-tag *ngFor="let tag of settings.websiteKeywords"
                             [text]="tag"
                             removable></nb-tag>
@@ -142,7 +156,7 @@
                            nbTagInput
                            name="tag"
                            #keywordInput
-                           (tagAdd)="onKeywordAdd($event)"
+                           (tagAdd)="onTagAdd($event, 'websiteKeywords')"
                            fullWidth
                            [focusInputOnValueChange]="false" />
                   </nb-tag-list>
@@ -164,6 +178,27 @@
                                                 [parent]="settings"
                                                 editor
                                                 property="legalDisclaimer"></ngx-string-textarea-form-group>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label class="label"
+                         for="listingOfficesToAutoFavouriteListings">Mark listings from following offices as favourite
+                    automatically</label>
+                  <nb-tag-list (tagRemove)="onTagRemove($event, 'listingOfficesToAutoFavouriteListings')">
+                    <nb-tag *ngFor="let office of settings.listingOfficesToAutoFavouriteListings"
+                            [text]="office"
+                            removable></nb-tag>
+                    <input type="text"
+                           nbTagInput
+                           name="tag"
+                           #keywordInput
+                           (tagAdd)="onTagAdd($event, 'listingOfficesToAutoFavouriteListings')"
+                           fullWidth
+                           [focusInputOnValueChange]="false" />
+                  </nb-tag-list>
+                </div>
               </div>
             </div>
           </nb-card-body>
