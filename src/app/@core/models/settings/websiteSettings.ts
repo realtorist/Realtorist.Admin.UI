@@ -13,5 +13,4 @@ export interface WebsiteSettings {
     websiteKeywords: string[];
     accountRequired: boolean;
     socialSharingImage: string;
-    listingOfficesToAutoFavouriteListings: string[];
 }

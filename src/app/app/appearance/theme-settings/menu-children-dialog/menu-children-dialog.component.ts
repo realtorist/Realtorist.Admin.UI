@@ -9,6 +9,7 @@ import { OrderAdditionalActionComponent } from '../../../../@common/components/t
 import { MenuItem, MenuItemWithChildren } from '../../../../@core/models/settings/appearance/themeSettings';
 import { ConfirmObject } from '../../../../@core/models/smartTable/confirmObject';
 import { defaultInlineTableSettings, stringColumn } from '../../../../@core/models/smartTable/inlineTableSettings';
+import { LinkAutoSuggestEditComponent } from '../linkAutoSuggestEditComponent';
 
 @Component({
   selector: "ngx-menu-children-dialog",
@@ -28,8 +29,15 @@ export class MenuChildrenDialogComponent implements OnInit {
     const self = this;
 
     this.tableSettings = defaultInlineTableSettings({
-      link: stringColumn('Link', undefined, true),
-      title: stringColumn('Title', undefined, true),
+      link: {
+        title: 'Link',
+        type: 'custome',
+        editor: {
+          type: 'custom',
+          component: LinkAutoSuggestEditComponent
+        }
+      },
+      title: stringColumn('Title', undefined, false),
       action: {
         type: 'custom',
         filter: false,

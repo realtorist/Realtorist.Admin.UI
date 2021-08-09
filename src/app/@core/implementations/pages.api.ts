@@ -28,5 +28,8 @@ export class PagesApi extends IPagesApi {
     addPage(page: Page): Observable<string> {
         return this.httpClient.put<string>(this.apiBaseUrl, page);
     }
-    
+
+    isLinkInUse(link: string, idsToExclude: string[]): Observable<boolean> {
+        return this.httpClient.post<boolean>(this.apiBaseUrl + 'link/check?link=' + encodeURIComponent(link), idsToExclude);
+    }
 }

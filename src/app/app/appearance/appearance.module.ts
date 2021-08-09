@@ -14,6 +14,7 @@ import { CodemirrorModule } from '@ctrl/ngx-codemirror';
 import { DragulaModule } from 'ng2-dragula';
 import { MenuChildrenDialogComponent } from './theme-settings/menu-children-dialog/menu-children-dialog.component';
 import { PageComponentsModule } from '../page-components/page-components.module';
+import { LinkAutoSuggestEditComponent } from './theme-settings/linkAutoSuggestEditComponent';
 
 @NgModule({
   imports: [
@@ -53,7 +54,8 @@ import { PageComponentsModule } from '../page-components/page-components.module'
   declarations: [
     ...routedComponents,
     MenuItemChildrenRenderComponent,
-    MenuChildrenDialogComponent
+    MenuChildrenDialogComponent,
+    LinkAutoSuggestEditComponent
   ],
 })
 export class AppearanceModule { }

@@ -25,6 +25,8 @@ import { AuthGuard } from './auth-guard.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { IEventsApi } from './abstractions/events.api';
 import { EventsApi } from './implementations/events.api';
+import { ILinksApi } from './abstractions/links.api';
+import { LinksApi } from './implementations/links.api';
 
 const socialLinks = [
   {
@@ -52,6 +54,7 @@ const DATA_SERVICES = [
   { provide: IPagesApi, useClass: PagesApi },
   { provide: IListingsApi, useClass: ListingsApi },
   { provide: IUserApi, useClass: UserApi },
+  { provide: ILinksApi, useClass: LinksApi },
   { provide: ISettingsApi, useClass: SettingsApi },
   { provide: IDataSourceProvider, useClass: DataSourceProvider },
 ];

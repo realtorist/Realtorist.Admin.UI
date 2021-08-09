@@ -97,7 +97,8 @@
               <div class="col-sm-4">
                 <ngx-image-select-input-form-group [parent]="settings"
                                                    property="socialSharingImage"
-                                                   title="Image for link preview in social networks"></ngx-image-select-input-form-group>
+                                                   title="Image for link preview in social networks">
+                </ngx-image-select-input-form-group>
               </div>
               <div class="col-sm-4">
                 <div class="form-group">
@@ -126,12 +127,12 @@
                     Unknown time zone!
                   </p>
                   <nb-autocomplete #timeZoneAutoComplete>
-                
+
                     <nb-option *ngFor="let timezone of getFilteredOptions(timezones, settings.timezone)"
                                [value]="timezone">
                       {{ timezone }}
                     </nb-option>
-                
+
                   </nb-autocomplete>
                 </div>
               </div>
@@ -178,27 +179,6 @@
                                                 [parent]="settings"
                                                 editor
                                                 property="legalDisclaimer"></ngx-string-textarea-form-group>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-12">
-                <div class="form-group">
-                  <label class="label"
-                         for="listingOfficesToAutoFavouriteListings">Mark listings from following offices as favourite
-                    automatically</label>
-                  <nb-tag-list (tagRemove)="onTagRemove($event, 'listingOfficesToAutoFavouriteListings')">
-                    <nb-tag *ngFor="let office of settings.listingOfficesToAutoFavouriteListings"
-                            [text]="office"
-                            removable></nb-tag>
-                    <input type="text"
-                           nbTagInput
-                           name="tag"
-                           #keywordInput
-                           (tagAdd)="onTagAdd($event, 'listingOfficesToAutoFavouriteListings')"
-                           fullWidth
-                           [focusInputOnValueChange]="false" />
-                  </nb-tag-list>
-                </div>
               </div>
             </div>
           </nb-card-body>

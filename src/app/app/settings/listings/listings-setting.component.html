@@ -1,0 +1,109 @@
+<ng-container *ngIf="!!settings">
+  <form name="form"
+        class="input-form"
+        (ngSubmit)="save(form)"
+        #form="ngForm"
+        autocomplete="off">
+    <div class="row">
+      <div class="col-12">
+        <nb-card>
+          <nb-card-header>
+            <div class="row header-with-buttons">
+              <div class="col-md-10 col-sm-8 header-content">
+                <div class="header-text">Update listings settings</div>
+              </div>
+
+              <div class="col-md-2 col-sm-4 control-buttons">
+                <nb-button-group status="primary">
+                  <button nbButton
+                          type="button"
+                          status="info"
+                          (click)="save(form)"
+                          title="Save"
+                          [disabled]="form.invalid"
+                          [nbSpinner]="loading">
+                    <nb-icon icon="save-outline"
+                             pack="eva"></nb-icon> Save
+                  </button>
+                </nb-button-group>
+              </div>
+            </div>
+          </nb-card-header>
+        </nb-card>
+      </div>
+    </div>
+    <div class="row"
+         [nbSpinner]="loading">
+
+      <div class="col-12">
+        <nb-card>
+          <nb-card-body>
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label class="label">Show similar listings on the listing details page</label>
+                  <div>
+                    <nb-toggle [(ngModel)]="settings.showSimilarListings"></nb-toggle>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <ngx-string-input-form-group title="Similar listings title"
+                                             [parent]="settings"
+                                             property="similarListingsTitle">
+                </ngx-string-input-form-group>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-4">
+                <ngx-numeric-input-form-group title="Maximum similar listings number"
+                                             min="3"
+                                             max="12"
+                                             [parent]="settings"
+                                             property="similarListingsNumber">
+                </ngx-numeric-input-form-group>
+              </div>
+              <div class="col-sm-4">
+                <ngx-numeric-input-form-group title="Maximum distance for similar listings in km"
+                                             min="1"
+                                             max="100"
+                                             [parent]="settings"
+                                             property="similarListingsMaxDistanceKm">
+                </ngx-numeric-input-form-group>
+              </div>
+              <div class="col-sm-4">
+                <ngx-numeric-input-form-group title="Maximum price difference percentage"
+                                             min="0"
+                                             max="100"
+                                             suffix="%"
+                                             [parent]="settings"
+                                             property="similarListingsMaxPriceDifferencePercentage">
+                </ngx-numeric-input-form-group>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label class="label"
+                         for="listingOfficesToAutoFavouriteListings">Mark listings from following offices as favourite automatically</label>
+                  <nb-tag-list (tagRemove)="onTagRemove($event, 'listingOfficesToAutoFavouriteListings')">
+                    <nb-tag *ngFor="let office of settings.listingOfficesToAutoFavouriteListings"
+                            [text]="office"
+                            removable></nb-tag>
+                    <input type="text"
+                           nbTagInput
+                           name="tag"
+                           #keywordInput
+                           (tagAdd)="onTagAdd($event, 'listingOfficesToAutoFavouriteListings')"
+                           fullWidth
+                           [focusInputOnValueChange]="false" />
+                  </nb-tag-list>
+                </div>
+              </div>
+            </div>
+          </nb-card-body>
+        </nb-card>
+      </div>
+    </div>
+  </form>
+</ng-container>

@@ -6,7 +6,8 @@ export enum SettingTypes {
     Analytics = 'Analytics',
     Social = 'Social',
     ListingSources = 'ListingSources',
-    Testimonials = 'Testimonials'
+    Testimonials = 'Testimonials',
+    Listings = 'Listings'
 }
 
 export enum AppearanceSettingTypes {

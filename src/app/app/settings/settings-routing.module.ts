@@ -4,6 +4,7 @@ import { AnalyticsSettingsComponent } from './analytics/analytics-setting.compon
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { GeoCodingSettingsComponent } from './geocoding/geocoding-setting.component';
 import { ListingSourcesSettingsComponent } from './listing-sources/listing-sources-setting.component';
+import { ListingsSettingsComponent } from './listings/listings-setting.component';
 import { ProfileSettingsComponent } from './profile/profile-setting.component';
 import { SettingsComponent } from './settings.component';
 import { SmtpSettingsComponent } from './smtp/smtp-setting.component';
@@ -43,6 +44,10 @@ const routes: Routes = [{
       component: ListingSourcesSettingsComponent,
     },
     {
+      path: 'listings',
+      component: ListingsSettingsComponent,
+    },
+    {
       path: 'change-password',
       component: ChangePasswordComponent,
     },
@@ -64,5 +69,6 @@ export const routedComponents = [
   AnalyticsSettingsComponent,
   SocialSettingsComponent,
   ListingSourcesSettingsComponent,
+  ListingsSettingsComponent,
   ChangePasswordComponent
 ];

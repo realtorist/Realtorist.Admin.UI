@@ -53,7 +53,7 @@ const routes: Routes = [{
     },
     {
       path: '',
-      redirectTo: 'requests',
+      redirectTo: 'events',
       pathMatch: 'full',
     },
     // {

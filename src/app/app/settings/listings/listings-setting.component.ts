@@ -5,26 +5,23 @@ import {
   NbTagInputAddEvent,
   NbToastrService,
 } from "@nebular/theme";
-import * as momentTZ from 'moment-timezone';
 
 import { Store } from '@ngrx/store';
 import { ISettingsApi } from '../../../@core/abstractions/settings.api';
+import { ListingsSettings } from '../../../@core/models/settings/listingsSettings';
 import { SettingTypes } from '../../../@core/models/settings/settingTypes';
-import { WebsiteSettings } from '../../../@core/models/settings/websiteSettings';
 import { loadProfileRequest } from '../../../@store/actions/user.actions';
 import { AppState } from '../../../@store/appStore';
-import { Themes } from '../../../@theme/styles/themes';
 
 @Component({
-  selector: "ngx-website-setting",
-  templateUrl: "./website-setting.component.html",
-  styleUrls: ["./website-setting.component.scss"],
+  selector: "ngx-listings-setting",
+  templateUrl: "./listings-setting.component.html",
+  styleUrls: ["./listings-setting.component.scss"],
 })
-export class WebsiteSettingsComponent implements OnInit {
-  settings: WebsiteSettings;
+export class ListingsSettingsComponent implements OnInit {
+  settings: ListingsSettings;
 
   loading = false;
-  timezones = momentTZ.tz.names();
 
   constructor(
     private toastrService: NbToastrService,
@@ -33,15 +30,11 @@ export class WebsiteSettingsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.api.getSetting<WebsiteSettings>(SettingTypes.Website)
+    this.api.getSetting<ListingsSettings>(SettingTypes.Listings)
       .subscribe(settings => {
-        this.settings = settings || {} as WebsiteSettings;
-        this.settings.websiteKeywords = this.settings.websiteKeywords ?? [];
+        this.settings = settings || {} as ListingsSettings;
+        this.settings.listingOfficesToAutoFavouriteListings = this.settings.listingOfficesToAutoFavouriteListings ?? [];
       })
-  }
-
-  isValidTimezone() {
-    return !!this.settings.timezone && this.timezones.indexOf(this.settings.timezone) >= 0;
   }
 
   getFilteredOptions(options: string[], currentValue: string) {
@@ -54,10 +47,10 @@ export class WebsiteSettingsComponent implements OnInit {
   }
 
   save(form: NgForm) {
-    if (form.invalid || !this.isValidTimezone()) return;
+    if (form.invalid) return;
 
     this.loading = true;
-    this.api.updateSetting(SettingTypes.Website, this.settings).subscribe((res) => {
+    this.api.updateSetting(SettingTypes.Listings, this.settings).subscribe((res) => {
       this.loading = false;
       this.store.dispatch(loadProfileRequest());
       this.toastrService.success(

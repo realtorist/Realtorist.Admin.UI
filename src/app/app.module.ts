@@ -37,6 +37,7 @@ import { apiServerUrl } from './@core/implementations/serverUrl';
 import { environment } from '../environments/environment';
 import { DateTimeHttpInterceptor } from './@common/services/http/dateTimeHttpInterceptor';
 import { UnauthorizedHttpInterceptor } from './@common/services/http/unauthorizedHttpInterceptor';
+import { WebsiteEffects } from './@store/effects/website.effects';
 
 @NgModule({
   declarations: [AppComponent],
@@ -117,7 +118,7 @@ import { UnauthorizedHttpInterceptor } from './@common/services/http/unauthorize
     NgxMaskModule.forRoot(),
     DragulaModule.forRoot(),
     ServicesModule,
-    EffectsModule.forRoot([UserEffects]),
+    EffectsModule.forRoot([UserEffects, WebsiteEffects]),
     StoreModule.forRoot(AppStore)
   ],
   bootstrap: [AppComponent],

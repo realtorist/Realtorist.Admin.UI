@@ -26,6 +26,7 @@ import { TimeCellRenderComponent } from './table/timeCellRenderComponent';
 import { TimeCellEditComponent } from './table/timeCellEditComponent';
 import { NbMomentDateModule } from '@nebular/moment';
 import { LargeAccordionMessageComponent } from './table/largeAccordionMessage.component';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   imports: [
@@ -68,6 +69,7 @@ import { LargeAccordionMessageComponent } from './table/largeAccordionMessage.co
     ImagePreloader,
   ],
   declarations: [
+    ConfirmDialogComponent,
     ConfirmDeleteDialogComponent,
     MediaSelectDialogComponent,
     MediaGalleryComponent,

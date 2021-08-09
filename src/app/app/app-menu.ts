@@ -12,6 +12,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
     group: true,
   },
   {
+    title: 'Events',
+    icon: 'bell-outline',
+    link: '/app/events'
+  },
+  {
     title: 'Customer requests',
     icon: 'paper-plane-outline',
     link: '/app/requests'
@@ -106,6 +111,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
         title: 'Social',
         icon: 'facebook-outline',
         link: '/app/settings/social'
+      },
+      {
+        title: 'Listings',
+        icon: 'pin-outline',
+        link: '/app/settings/listings'
       },
       {
         title: 'Listing sources',

@@ -7,4 +7,5 @@ export abstract class  IPagesApi {
     abstract deletePage(id: string): Observable<HttpResponse<any>>;
     abstract updatePage(pageId: string, page: Page): Observable<HttpResponse<any>>;
     abstract addPage(page: Page): Observable<string>;
+    abstract isLinkInUse(link: string, idsToExclude: string[]): Observable<boolean>;
 }

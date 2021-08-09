@@ -66,7 +66,7 @@ export const stringColumn = (title: string, valuePrepareFunction?: (value: strin
     {
         title: title,
         type: 'text',
-        filter: !!disableFilter,
+        filter: !disableFilter,
         valuePrepareFunction: valuePrepareFunction
     }
 );

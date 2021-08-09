@@ -41,4 +41,8 @@ export class BlogApi extends IBlogApi {
     addPost(post: Post): Observable<string> {
         return this.httpClient.put<string>(this.postsApiBaseUrl, post);
     }
+
+    isLinkInUse(link: string, idsToExclude: string[]): Observable<boolean> {
+        return this.httpClient.post<boolean>(this.postsApiBaseUrl + 'link/check?link=' + encodeURIComponent(link), idsToExclude);
+    }
 }

@@ -3,6 +3,7 @@ import { Component, Inject, Input, OnDestroy, OnInit, ViewChild } from "@angular
 import { NgForm } from "@angular/forms";
 import { CodemirrorComponent } from '@ctrl/ngx-codemirror';
 import {
+  NbDialogService,
   NbTagComponent,
   NbTagInputAddEvent,
   NbToastrService,
@@ -10,6 +11,8 @@ import {
 import * as CodeMirror from 'codemirror';
 import { DragulaService } from 'ng2-dragula';
 import { Observable } from "rxjs";
+import { ConfirmDeleteDialogComponent } from '../../../@common/components/confirm-delete-dialog/confirm-delete-dialog.component';
+import { ConfirmDialogComponent } from '../../../@common/components/confirm-dialog/confirm-dialog.component';
 import { stringToSlug } from "../../../@common/helpers/slug";
 import { IPagesApi } from "../../../@core/abstractions/pages.api";
 import { Page } from "../../../@core/models/pages/page";
@@ -33,9 +36,13 @@ export class PageEditFormComponent implements OnInit, OnDestroy {
   loading = false;
 
   autoGenerateLink = true;
+  confirmedLinkChange = false;
 
   pageComponentsTypes = PageComponentsTypes;
   pageComponentsTypesLabels = PageComponentsTypesLabels;
+
+  oldLink: string = '';
+  isLinkUsed: boolean = false;
 
   availableComponents: PageComponent[] = Object.keys(PageComponentsTypes)
     .map(key => ({
@@ -47,13 +54,16 @@ export class PageEditFormComponent implements OnInit, OnDestroy {
     @Inject(APP_BASE_HREF) private baseHref: string,
     private toastrService: NbToastrService,
     private dragulaService: DragulaService,
+    private dialogService: NbDialogService,
     private readonly api: IPagesApi
   ) {}
 
   ngOnInit(): void {
+    this.autoGenerateLink = !this.isEdit;
     this.page$.subscribe((page) => {
       this.page = page;
       this.pageTitle = this.page?.title;
+      this.oldLink = this.page?.link;
 
       this.page.components = this.page.components || [];
     });
@@ -101,6 +111,7 @@ export class PageEditFormComponent implements OnInit, OnDestroy {
   onTitleChange(value: string) {
     if (!this.autoGenerateLink) return;
     this.page.link = stringToSlug(value);
+    this.onLinkChange();
   }
 
   onKeywordRemove(tagToRemove: NbTagComponent): void {
@@ -108,6 +119,32 @@ export class PageEditFormComponent implements OnInit, OnDestroy {
     if (index >= 0) {
       this.page.keywords.splice(index, 1);
     }
+  }
+
+  onLinkChange(): void {
+    if (!this.isEdit || this.confirmedLinkChange) {
+      this.oldLink = this.page.link;
+      this.checkLink();
+      return;
+    };
+
+    var dialog = this.dialogService.open(ConfirmDialogComponent, {
+      context: {
+        text: 'If page\'s link is changed, your existing links to this page will stop working. Are you sure you want to continue?',
+        title: 'Link change',
+        okButtonText: 'Yes, I\'m sure'
+      }
+    });
+    dialog.onClose.subscribe(result => {
+      if (result)
+      {
+        this.confirmedLinkChange = true;
+        this.oldLink = this.page.link;
+        this.checkLink();
+      } else {
+        this.page.link = this.oldLink;
+      }
+    })
   }
 
   onKeywordAdd({ value, input }: NbTagInputAddEvent): void {
@@ -166,5 +203,13 @@ export class PageEditFormComponent implements OnInit, OnDestroy {
         );
       });
     }
+  }
+
+  private checkLink(): void {
+    this.api.isLinkInUse(this.page.link, this.page.id ? [this.page.id] : [])
+      .subscribe(result => {
+        this.isLinkUsed = result;
+        return result;
+      })
   }
 }

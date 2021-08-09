@@ -36,7 +36,7 @@
                     status="info"
                     (click)="publish(form)"
                     title="Publish"
-                    [disabled]="form.invalid"
+                    [disabled]="form.invalid || isLinkUsed"
                     [nbSpinner]="loading"
                   >
                     <nb-icon icon="save-outline" pack="eva"></nb-icon> Publish
@@ -92,6 +92,7 @@
                         name="link"
                         [(ngModel)]="post.link"
                         placeholder="Link"
+                        (ngModelChange)="onLinkChange()"
                         #link="ngModel"
                         required
                         pattern="[a-z0-9-]+"
@@ -115,6 +116,12 @@
                       Link should contain only lower case latin characters,
                       numbers and dash symbol (-).
                     </div>
+                  </div>
+                  <div
+                    *ngIf="isLinkUsed"
+                    class="col-12 errors"
+                  >
+                    Link is already used
                   </div>
                 </div>
                 <div class="row">

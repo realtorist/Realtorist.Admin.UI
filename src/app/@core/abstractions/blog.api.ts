@@ -10,4 +10,5 @@ export abstract class  IBlogApi {
     abstract deleteComment(postId: string, commentId: string): Observable<HttpResponse<any>>;
     abstract updatePost(postId: string, post: Post): Observable<HttpResponse<any>>;
     abstract addPost(post: Post): Observable<string>;
+    abstract isLinkInUse(link: string, idsToExclude: string[]): Observable<boolean>;
 }

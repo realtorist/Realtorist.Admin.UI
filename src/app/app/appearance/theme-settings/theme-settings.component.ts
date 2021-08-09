@@ -4,6 +4,7 @@ import { CodemirrorComponent } from '@ctrl/ngx-codemirror';
 import {
   NbToastrService,
 } from "@nebular/theme";
+import { Store } from '@ngrx/store';
 import * as CodeMirror from 'codemirror';
 import { DragulaService } from 'ng2-dragula';
 import { LocalDataSource } from 'ng2-smart-table';
@@ -13,6 +14,9 @@ import { ThemeSettings, MenuItem, MenuItemWithChildren } from '../../../@core/mo
 import { AppearanceSettingTypes } from '../../../@core/models/settings/settingTypes';
 import { ConfirmObject } from '../../../@core/models/smartTable/confirmObject';
 import { createLocalDataSource, defaultInlineTableSettings, reorderColumn, stringColumn } from '../../../@core/models/smartTable/inlineTableSettings';
+import { loadSiteLinksRequest } from '../../../@store/actions/website.actions';
+import { AppState } from '../../../@store/appStore';
+import { LinkAutoSuggestEditComponent } from './linkAutoSuggestEditComponent';
 import { MenuItemChildrenRenderComponent } from './menuItemChildrenRenderComponent.component';
 
 
@@ -35,20 +39,34 @@ export class ThemeSettingsComponent implements OnInit, OnDestroy {
 
   constructor(
     private toastrService: NbToastrService,
-    private dragulaService: DragulaService,
+    private store: Store<AppState>,
     private readonly api: ISettingsApi
   ) {
     const self = this;
 
     this.footerMenuTableSettings = defaultInlineTableSettings({
-      link: stringColumn('Link', undefined, true),
-      title: stringColumn('Title', undefined, true),
+      link: {
+        title: 'Link',
+        type: 'custome',
+        editor: {
+          type: 'custom',
+          component: LinkAutoSuggestEditComponent
+        }
+      },
+      title: stringColumn('Title', undefined, false),
       action: reorderColumn<MenuItem>(() => this.settings, 'footerMenu', this.footerMenuDataSource)
     });
 
     this.headerMenuTableSettings = defaultInlineTableSettings({
-      link: stringColumn('Link', undefined, true),
-      title: stringColumn('Title', undefined, true),
+      link: {
+        title: 'Link',
+        type: 'custome',
+        editor: {
+          type: 'custom',
+          component: LinkAutoSuggestEditComponent
+        }
+      },
+      title: stringColumn('Title', undefined, false),
       children: {
         type: 'custom',
         filter: false,
@@ -64,6 +82,7 @@ export class ThemeSettingsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.store.dispatch(loadSiteLinksRequest());
     this.api.getSetting<ThemeSettings>(AppearanceSettingTypes.ThemeSettings)
       .subscribe(settings => {
         this.settings = settings || {} as ThemeSettings;

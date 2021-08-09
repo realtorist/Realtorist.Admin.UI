@@ -1,7 +1,6 @@
 import { APP_BASE_HREF } from '@angular/common';
 import { Component, ElementRef, Inject, Input, OnInit } from "@angular/core";
 import { NgForm } from "@angular/forms";
-import { ActivatedRoute, Router } from "@angular/router";
 import {
   NbDialogService,
   NbTagComponent,
@@ -9,6 +8,7 @@ import {
   NbToastrService,
 } from "@nebular/theme";
 import { Observable } from "rxjs";
+import { ConfirmDialogComponent } from '../../../../@common/components/confirm-dialog/confirm-dialog.component';
 import { stringToSlug } from "../../../../@common/helpers/slug";
 import { IBlogApi } from "../../../../@core/abstractions/blog.api";
 import { Post } from "../../../../@core/models/blog/post";
@@ -32,17 +32,24 @@ export class PostEditFormComponent implements OnInit {
   tags$: Observable<string[]>;
 
   autoGenerateLink = true;
+  oldLink: string = '';
+  confirmedLinkChange = false;
+
+  isLinkUsed: boolean = false;
 
   constructor(
     @Inject(APP_BASE_HREF) private baseHref: string,
     private toastrService: NbToastrService,
+    private readonly dialogService: NbDialogService,
     private readonly api: IBlogApi
   ) {}
 
   ngOnInit(): void {
+    this.autoGenerateLink = !this.isEdit;
     this.post$.subscribe((post) => {
       this.post = post;
       this.postTitle = this.post?.title;
+      this.oldLink = this.post?.link;
     });
 
     this.categories$ = this.api.getCategories();
@@ -52,6 +59,32 @@ export class PostEditFormComponent implements OnInit {
   onTitleChange(value: string) {
     if (!this.autoGenerateLink) return;
     this.post.link = stringToSlug(value);
+    this.onLinkChange();
+  }
+
+  onLinkChange(): void {
+    if (!this.isEdit || this.confirmedLinkChange) {
+      this.oldLink = this.post.link;
+      this.checkLink();
+      return;
+    };
+
+    var dialog = this.dialogService.open(ConfirmDialogComponent, {
+      context: {
+        text: 'If page\'s link is changed, your existing links to this page will stop working. Are you sure you want to continue?',
+        title: 'Link change',
+        okButtonText: 'Yes, I\'m sure'
+      }
+    });
+    dialog.onClose.subscribe(result => {
+      if (result) {
+        this.confirmedLinkChange = true;
+        this.oldLink = this.post.link;
+        this.checkLink();
+      } else {
+        this.post.link = this.oldLink;
+      }
+    })
   }
 
   onTagRemove(tagToRemove: NbTagComponent): void {
@@ -117,5 +150,13 @@ export class PostEditFormComponent implements OnInit {
         );
       });
     }
+  }
+
+  private checkLink(): void {
+    this.api.isLinkInUse(this.post.link, this.post.id ? [this.post.id] : [])
+      .subscribe(result => {
+        this.isLinkUsed = result;
+        return result;
+      })
   }
 }
