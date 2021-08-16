@@ -1,5 +1,5 @@
-import { CustomerRequestType } from "./CustomerRequestType";
-import { IAm } from "./IAm";
+import { CustomerRequestType } from "./customerRequestType";
+import { IAm } from "./iAm";
 
 export interface CustomerRequestInformation {
     listingId?: string;
