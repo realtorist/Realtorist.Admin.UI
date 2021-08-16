@@ -1,8 +1,8 @@
 import * as moment from "moment";
 import { Address } from "./details/address";
-import { PropertyPhoto } from "./details/PropertyPhoto";
+import { PropertyPhoto } from "./details/propertyPhoto";
 import { ListingSource } from "./enums/listingSource";
-import { MeasureUnit } from "./lookups/MeasureUnit";
+import { MeasureUnit } from "./lookups/measureUnit";
 import { OwnershipType } from "./lookups/ownershipType";
 import { PaymentUnit } from "./lookups/paymentUnit";
 import { PropertyType } from "./lookups/propertyType";

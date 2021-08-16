@@ -1,5 +1,5 @@
 import * as moment from "moment";
-import { CustomerRequestInformation } from "./CustomerRequestInformation";
+import { CustomerRequestInformation } from "./customerRequestInformation";
 import { CustomerRequestReply } from "./customerRequestReply";
 
 export interface CustomerRequest {

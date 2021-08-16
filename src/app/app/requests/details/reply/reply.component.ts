@@ -2,7 +2,7 @@ import { Component, Input } from "@angular/core";
 import { Store } from '@ngrx/store';
 import * as moment from "moment";
 import { Observable } from 'rxjs';
-import { CustomerRequestInformation } from "../../../../@core/models/requests/CustomerRequestInformation";
+import { CustomerRequestInformation } from "../../../../@core/models/requests/customerRequestInformation";
 import { CustomerRequestReply } from "../../../../@core/models/requests/customerRequestReply";
 import { Profile } from '../../../../@core/models/user/profile';
 import { AppState } from '../../../../@store/appStore';

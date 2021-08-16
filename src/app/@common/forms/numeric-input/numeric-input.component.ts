@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input, OnInit } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 
 @Component({
   selector: "ngx-numeric-input",
@@ -25,6 +25,7 @@ export class NumericInputComponent implements OnInit {
 
 @Component({
   selector: "ngx-numeric-input-form-group",
+  
   template: '<div class="form-group"><label class="label">{{ title }}</label><ngx-numeric-input [parent]="parent" [property]="property" [required]="required" [min]="min" [max]="max" [step]="step" [title]="title" [suffix]="suffix" [prefix]="prefix"></ngx-numeric-input></div>',
 })
 export class NumericInputFormGroupComponent extends NumericInputComponent implements OnInit {

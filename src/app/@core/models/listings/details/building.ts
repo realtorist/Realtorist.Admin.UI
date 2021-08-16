@@ -19,7 +19,7 @@ import { ConstructionStyleOther } from '../lookups/constructionStyleOther';
 import { ConstructionStyleAttachment } from '../lookups/constructionStyleAttachment';
 import { ConstructionStatus } from '../lookups/constructionStatus';
 import { ConstructionMaterial } from '../lookups/constructionMaterial';
-import { Measurement } from '../units/Measurement';
+import { Measurement } from '../units/measurement';
 import { BasementType } from '../lookups/basementType';
 import { BasementFeatures } from '../lookups/basementFeatures';
 import { BasementDevelopment } from '../lookups/basementDevelopment';

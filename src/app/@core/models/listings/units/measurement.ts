@@ -1,4 +1,4 @@
-import { MeasureUnit } from "../lookups/MeasureUnit";
+import { MeasureUnit } from "../lookups/measureUnit";
 
 export interface Measurement {
     unit: MeasureUnit,

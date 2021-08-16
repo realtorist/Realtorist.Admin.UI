@@ -2,13 +2,12 @@ import { AfterViewInit, Component } from "@angular/core";
 import { NbDialogService, NbToastrService } from "@nebular/theme";
 import * as moment from "moment";
 import { DataSource } from "ng2-smart-table/lib/lib/data-source/data-source";
-import { environment } from "../../../../environments/environment";
 import { ConfirmDeleteDialogComponent } from "../../../@common/components/confirm-delete-dialog/confirm-delete-dialog.component";
 import { ICustomerRequestsApi } from "../../../@core/abstractions/customer-requests.api";
 import { IDataSourceProvider } from "../../../@core/abstractions/dataSourceProvider";
 import { apiServerUrl } from '../../../@core/implementations/serverUrl';
-import { getCustomerRequestTypeDisplayString } from "../../../@core/models/requests/CustomerRequestType";
-import { getIAmDisplayString } from "../../../@core/models/requests/IAm";
+import { getCustomerRequestTypeDisplayString } from "../../../@core/models/requests/customerRequestType";
+import { getIAmDisplayString } from "../../../@core/models/requests/iAm";
 import { AdditionalActionComponent } from "./additionalAction.component";
 
 @Component({

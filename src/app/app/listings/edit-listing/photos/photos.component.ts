@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, Input, ViewChild } from "@angular/core";
 import { FormControl } from "@angular/forms";
-import { PropertyPhoto } from "../../../../@core/models/listings/details/PropertyPhoto";
+import { PropertyPhoto } from "../../../../@core/models/listings/details/propertyPhoto";
 
 @Component({
   selector: "ngx-listing-edit-photos",

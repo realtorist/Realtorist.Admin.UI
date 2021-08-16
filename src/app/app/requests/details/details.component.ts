@@ -2,13 +2,12 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { NbDialogService, NbToastrService } from "@nebular/theme";
 import * as moment from "moment";
-import { environment } from "../../../../environments/environment";
 import { ConfirmDeleteDialogComponent } from "../../../@common/components/confirm-delete-dialog/confirm-delete-dialog.component";
 import { ICustomerRequestsApi } from "../../../@core/abstractions/customer-requests.api";
 import { apiServerUrl } from '../../../@core/implementations/serverUrl';
 import { CustomerRequest } from "../../../@core/models/requests/customerRequest";
-import { getCustomerRequestTypeDisplayString } from "../../../@core/models/requests/CustomerRequestType";
-import { getIAmDisplayString } from "../../../@core/models/requests/IAm";
+import { getCustomerRequestTypeDisplayString } from "../../../@core/models/requests/customerRequestType";
+import { getIAmDisplayString } from "../../../@core/models/requests/iAm";
 
 @Component({
   selector: "ngx-customer-request",

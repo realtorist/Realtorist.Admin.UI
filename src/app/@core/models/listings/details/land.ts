@@ -2,7 +2,7 @@ import { Sewer } from '../lookups/sewer';
 import { FrontsOn } from '../lookups/frontsOn';
 import { FenceType } from '../lookups/fenceType';
 import { CurrentUse } from '../lookups/currentUse';
-import { Measurement } from '../units/Measurement';
+import { Measurement } from '../units/measurement';
 
 export interface Land {
     /**

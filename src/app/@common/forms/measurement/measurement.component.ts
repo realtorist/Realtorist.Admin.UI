@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, Input, OnInit } from "@angular/core";
 import { EnumDisplayMap } from '../../../@core/models/enumDisplayMap';
-import { MeasureUnit } from '../../../@core/models/listings/lookups/MeasureUnit';
-import { Measurement } from '../../../@core/models/listings/units/Measurement';
+import { MeasureUnit } from '../../../@core/models/listings/lookups/measureUnit';
+import { Measurement } from '../../../@core/models/listings/units/measurement';
 
 @Component({
   selector: "ngx-measurement-input",
