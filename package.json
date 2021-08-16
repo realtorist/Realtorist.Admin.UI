@@ -1,13 +1,12 @@
 {
-  "name": "ngx-admin",
-  "version": "7.0.0",
-  "license": "MIT",
+  "name": "realtorist-admin-ui",
+  "version": "0.0.1",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/akveo/ngx-admin.git"
+    "url": "git+https://github.com/realtorist/Realtorist.Admin.UI.git"
   },
   "bugs": {
-    "url": "https://github.com/akveo/ngx-admin/issues"
+    "url": "https://github.com/realtorist/Realtorist.Admin.UI/issues"
   },
   "scripts": {
     "ng": "ng",
@@ -15,7 +14,7 @@
     "start": "ng serve",
     "build": "ng build",
     "build:staging": "npm run build -- --configuration staging --aot --base-href /admin",
-    "build:prod": "npm run build -- --prod --aot --base-href /admin",
+    "build:prod": "npm run build -- --configuration production --aot --base-href /admin",
     "test": "ng test",
     "test:coverage": "rimraf coverage && npm run test -- --code-coverage",
     "lint": "ng lint",
