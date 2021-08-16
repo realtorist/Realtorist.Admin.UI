@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { NbMediaBreakpointsService, NbMenuService, NbSidebarService, NbThemeService } from '@nebular/theme';
+import { NbComponentStatus, NbMediaBreakpointsService, NbMenuService, NbSidebarService, NbThemeService, NbToastrService } from '@nebular/theme';
 
 import { map, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
@@ -11,6 +11,8 @@ import { AppState } from '../../../@store/appStore';
 import { UserCurrentState } from '../../../@core/models/user/userState';
 import { DEFAULT_THEME } from '../../styles/theme.default';
 import { apiServerUrl } from '../../../@core/implementations/serverUrl';
+import { EventLevel } from '../../../@core/models/events/eventLevel';
+import { EventsSseService } from '../../../@common/services/events/eventsSseService';
 
 @Component({
   selector: 'ngx-header',
@@ -18,23 +20,25 @@ import { apiServerUrl } from '../../../@core/implementations/serverUrl';
   templateUrl: './header.component.html',
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-
+  private interval: any = null;
   private destroy$: Subject<void> = new Subject<void>();
   userPictureOnly: boolean = false;
   profile: Profile;
   userState: UserCurrentState;
-  
+
   currentTheme = DEFAULT_THEME.name;
 
-  userMenu = [ { title: 'Profile', link: '/app/settings/profile' }, { title: 'Log out', link: '/auth/logout' } ];
+  userMenu = [{ title: 'Profile', link: '/app/settings/profile' }, { title: 'Log out', link: '/auth/logout' }];
 
   websiteLink = apiServerUrl();
 
   constructor(private sidebarService: NbSidebarService,
-              private menuService: NbMenuService,
-              private themeService: NbThemeService,
-              private breakpointService: NbMediaBreakpointsService,
-              private store: Store<AppState>) {
+    private menuService: NbMenuService,
+    private themeService: NbThemeService,
+    private breakpointService: NbMediaBreakpointsService,
+    private toastrService: NbToastrService,
+    private eventsSseService: EventsSseService,
+    private store: Store<AppState>) {
   }
 
   ngOnInit() {
@@ -68,11 +72,19 @@ export class HeaderComponent implements OnInit, OnDestroy {
         takeUntil(this.destroy$),
       )
       .subscribe(themeName => this.currentTheme = themeName);
+
+    this.eventsSseService.getServerSentEvent()
+        .subscribe(event => {
+          this.toastrService.show(event.message, event.title, {
+            status: this.eventLevelToStatus(event.level)
+          });
+        });
   }
 
   ngOnDestroy() {
     this.destroy$.next();
     this.destroy$.complete();
+    clearInterval(this.interval);
   }
 
   changeTheme(themeName: string) {
@@ -88,5 +100,19 @@ export class HeaderComponent implements OnInit, OnDestroy {
   navigateHome() {
     this.menuService.navigateHome();
     return false;
+  }
+
+  private eventLevelToStatus(level: EventLevel): NbComponentStatus {
+    switch (level) {
+      case EventLevel.Success:
+        return 'success';
+      case EventLevel.Warning:
+        return 'warning';
+      case EventLevel.Error:
+        return 'danger';
+      default:
+      case EventLevel.Info:
+        return 'info';
+    }
   }
 }

@@ -27,6 +27,10 @@ import { TimeCellEditComponent } from './table/timeCellEditComponent';
 import { NbMomentDateModule } from '@nebular/moment';
 import { LargeAccordionMessageComponent } from './table/largeAccordionMessage.component';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
+import { CronEditorComponent } from './table/cronEditorComponent.component';
+import { CronRenderComponent } from './table/cronRenderComponent.component';
+import { CronEditDialogComponent } from './table/cron-edit-dialog/cron-edit-dialog.component';
+import { CronJobsModule } from 'ngx-cron-jobs';
 
 @NgModule({
   imports: [
@@ -42,6 +46,7 @@ import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.componen
     NbMomentDateModule,
     Ng2SmartTableModule,
     NbAccordionModule,
+    CronJobsModule,
     ThemeModule,
     NbDialogModule.forChild(),
     NgxPaginationModule,
@@ -81,6 +86,9 @@ import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.componen
     EmptyCellEditComponent,
     TimeCellRenderComponent,
     TimeCellEditComponent,
+    CronEditorComponent,
+    CronRenderComponent,
+    CronEditDialogComponent,
     EnumRenderComponent,
     LargeAccordionMessageComponent,
     OrderAdditionalActionComponent,

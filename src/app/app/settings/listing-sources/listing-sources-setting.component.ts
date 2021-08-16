@@ -5,6 +5,8 @@ import {
 } from "@nebular/theme";
 import * as moment from 'moment';
 import { LocalDataSource } from 'ng2-smart-table';
+import { CronEditorComponent } from '../../../@common/components/table/cronEditorComponent.component';
+import { CronRenderComponent } from '../../../@common/components/table/cronRenderComponent.component';
 import { EmptyCellEditComponent } from '../../../@common/components/table/emptyCellEditorComponent';
 import { TimeCellEditComponent } from '../../../@common/components/table/timeCellEditComponent';
 import { TimeCellRenderComponent } from '../../../@common/components/table/timeCellRenderComponent';
@@ -68,15 +70,25 @@ export class ListingSourcesSettingsComponent implements OnInit {
     username: stringColumn('Username'),
     password: stringColumn('Password', (value) => value.split('').map(_ => '*').join('')),
     destinationId: numberColumn('Destination ID'),
+    // updateTime: {
+    //   title: 'UpdateTime',
+    //   editor: {
+    //     type: 'custom',
+    //     component: TimeCellEditComponent
+    //   },
+    //   type: 'custom',
+    //   filter: false,
+    //   renderComponent: TimeCellRenderComponent
+    // },
     updateTime: {
       title: 'UpdateTime',
       editor: {
         type: 'custom',
-        component: TimeCellEditComponent
+        component: CronEditorComponent
       },
       type: 'custom',
       filter: false,
-      renderComponent: TimeCellRenderComponent
+      renderComponent: CronRenderComponent
     },
     actions: {
       title: '',

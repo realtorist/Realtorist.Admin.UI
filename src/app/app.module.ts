@@ -38,6 +38,7 @@ import { environment } from '../environments/environment';
 import { DateTimeHttpInterceptor } from './@common/services/http/dateTimeHttpInterceptor';
 import { UnauthorizedHttpInterceptor } from './@common/services/http/unauthorizedHttpInterceptor';
 import { WebsiteEffects } from './@store/effects/website.effects';
+import { EventsSseService } from './@common/services/events/eventsSseService';
 
 @NgModule({
   declarations: [AppComponent],
@@ -143,6 +144,9 @@ import { WebsiteEffects } from './@store/effects/website.effects';
       useClass: UnauthorizedHttpInterceptor,
       multi: true,
     },
+    {
+      provide: EventsSseService
+    }
   ]
 })
 export class AppModule {

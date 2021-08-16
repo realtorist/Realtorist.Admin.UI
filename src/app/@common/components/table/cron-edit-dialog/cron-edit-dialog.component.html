@@ -1,0 +1,10 @@
+<nb-card>
+  <nb-card-header>Edit frequency</nb-card-header>
+  <nb-card-body>
+    <cron-jobs [(ngModel)]="cron" [config]="cronConfig"></cron-jobs>
+  </nb-card-body>
+  <nb-card-footer>
+    <button class="cancel" nbButton status="info" (click)="cancel()">Cancel</button>
+    <button nbButton status="danger" (click)="save()">Save</button>
+  </nb-card-footer>
+</nb-card>
