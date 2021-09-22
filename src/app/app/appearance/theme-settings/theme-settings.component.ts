@@ -86,6 +86,7 @@ export class ThemeSettingsComponent implements OnInit, OnDestroy {
     this.api.getSetting<ThemeSettings>(AppearanceSettingTypes.ThemeSettings)
       .subscribe(settings => {
         this.settings = settings || {} as ThemeSettings;
+        this.settings.styleOverrides = this.settings.styleOverrides || {};
         createLocalDataSource(this.footerMenuDataSource, this.settings, 'footerMenu');
         createLocalDataSource(this.headerMenuDataSource, this.settings, 'headerMenu');
 
