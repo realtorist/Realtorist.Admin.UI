@@ -3,10 +3,10 @@
   "version": "0.0.1",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/realtorist/Realtorist.Admin.UI.git"
+    "url": "git+https://github.com/realtorist/Realtorist.Web.Admin.UI.git"
   },
   "bugs": {
-    "url": "https://github.com/realtorist/Realtorist.Admin.UI/issues"
+    "url": "https://github.com/realtorist/Realtorist.Web.Admin.UI/issues"
   },
   "scripts": {
     "ng": "ng",
