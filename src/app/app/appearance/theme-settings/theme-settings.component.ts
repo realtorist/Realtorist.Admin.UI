@@ -8,7 +8,7 @@ import { Store } from '@ngrx/store';
 import * as CodeMirror from 'codemirror';
 import { DragulaService } from 'ng2-dragula';
 import { LocalDataSource } from 'ng2-smart-table';
-import { EmptyCellEditComponent } from '../../../@common/components/table/emptyCellEditorComponent';
+import { EmptyCellEditComponent } from '../../../@common/components/table/emptyCellEditorComponent.component';
 import { ISettingsApi } from '../../../@core/abstractions/settings.api';
 import { ThemeSettings, MenuItem, MenuItemWithChildren } from '../../../@core/models/settings/appearance/themeSettings';
 import { AppearanceSettingTypes } from '../../../@core/models/settings/settingTypes';

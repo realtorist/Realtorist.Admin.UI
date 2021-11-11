@@ -1,7 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import * as moment from "moment";
 import { Observable, of } from "rxjs";
-import { ListingSource } from "../../../@core/models/listings/enums/listingSource";
 import { Listing } from "../../../@core/models/listings/listing";
 import { BuildingType } from "../../../@core/models/listings/lookups/buildingType";
 import { OwnershipType } from "../../../@core/models/listings/lookups/ownershipType";
@@ -20,7 +19,8 @@ export class ListingAddComponent implements OnInit {
     },
     alternateURL: {
     },
-    source: ListingSource.Manual,
+    feedId: null,
+    feedType: null,
     ammenitiesNearBy: [],
     description: '',
     disabled: false,

@@ -8,7 +8,7 @@ import { FormInputsModule } from '../../@common/forms/form-inputs.module';
 
 import { ThemeModule } from '../../@theme/theme.module';
 import { routedComponents, SettingsRoutingModule } from './settings-routing.module';
-import { ListingSourceAdditionalActionComponent } from './listing-sources/additionalAction.component';
+import { ListingFeedAdditionalActionComponent } from './listings/additionalFeedAction.component';
 
 @NgModule({
   imports: [
@@ -44,7 +44,7 @@ import { ListingSourceAdditionalActionComponent } from './listing-sources/additi
   ],
   declarations: [
     ...routedComponents,
-    ListingSourceAdditionalActionComponent
+    ListingFeedAdditionalActionComponent
   ],
 })
 export class SettingsModule { }

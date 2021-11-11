@@ -7,7 +7,7 @@ import { Testimonial } from '../../../@core/models/settings/testimonial';
 import { ConfirmObject } from '../../../@core/models/smartTable/confirmObject';
 import { createLocalDataSource, defaultInlineTableSettings, photoColumn, stringColumn } from '../../../@core/models/smartTable/inlineTableSettings';
 import { OrderAdditionalActionComponent } from '../../../@common/components/table/orderAdditionalAction.component';
-import { EmptyCellEditComponent } from '../../../@common/components/table/emptyCellEditorComponent';
+import { EmptyCellEditComponent } from '../../../@common/components/table/emptyCellEditorComponent.component';
 import { PageComponent } from '../../../@core/models/settings/appearance/pageComponent';
 
 @Component({

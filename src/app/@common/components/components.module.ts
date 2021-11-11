@@ -11,19 +11,19 @@ import { MediaUploadComponent } from "./media/media-upload/media-upload.componen
 import { MediaPreviewDialogComponent } from "./media/media-preview-dialog/media-preview-dialog.component";
 import { NgxFilesizeModule } from "ngx-filesize";
 import { Ng2SmartTableModule } from 'ng2-smart-table';
-import { NumberCellEditComponent } from './table/numberCellEditComponent';
+import { NumberCellEditComponent } from './table/numberCellEditComponent.component';
 import { PipesModule } from '../pipes/pipes.module';
 import { EnumRenderComponent } from './table/enumRenderComponent.component';
 import { NgxMaskModule } from 'ngx-mask';
-import { PhotoCellEditComponent } from './table/photoCellEditComponent';
+import { PhotoCellEditComponent } from './table/photoCellEditComponent.component';
 import { DirectivesModule } from '../directives/directives.module';
-import { PhotoCellRenderComponent } from './table/photoCellRenderComponent';
+import { PhotoCellRenderComponent } from './table/photoCellRenderComponent.component';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { OrderAdditionalActionComponent } from './table/orderAdditionalAction.component';
-import { EmptyCellEditComponent } from './table/emptyCellEditorComponent';
+import { EmptyCellEditComponent } from './table/emptyCellEditorComponent.component';
 import { ImagePreloader } from './media/image-preloader.directive';
-import { TimeCellRenderComponent } from './table/timeCellRenderComponent';
-import { TimeCellEditComponent } from './table/timeCellEditComponent';
+import { TimeCellRenderComponent } from './table/timeCellRenderComponent.component';
+import { TimeCellEditComponent } from './table/timeCellEditComponent.component';
 import { NbMomentDateModule } from '@nebular/moment';
 import { LargeAccordionMessageComponent } from './table/largeAccordionMessage.component';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
@@ -31,6 +31,9 @@ import { CronEditorComponent } from './table/cronEditorComponent.component';
 import { CronRenderComponent } from './table/cronRenderComponent.component';
 import { CronEditDialogComponent } from './table/cron-edit-dialog/cron-edit-dialog.component';
 import { CronJobsModule } from 'ngx-cron-jobs';
+import { PasswordCellEditComponent } from './table/passwordCellEditComponent.component';
+import { SelectFilterWithNullOptionComponent } from './table/selectFilterWithNullOptionComponent.component';
+import { PasswordRenderComponent } from './table/passwordRenderComponent.component';
 
 @NgModule({
   imports: [
@@ -66,12 +69,15 @@ import { CronJobsModule } from 'ngx-cron-jobs';
     MediaUploadComponent,
     MediaPreviewDialogComponent,
     NumberCellEditComponent,
+    PasswordCellEditComponent,
+    PasswordRenderComponent,
     PhotoCellEditComponent,
     PhotoCellRenderComponent,
     EmptyCellEditComponent,
     EnumRenderComponent,
     OrderAdditionalActionComponent,
     ImagePreloader,
+    SelectFilterWithNullOptionComponent,
   ],
   declarations: [
     ConfirmDialogComponent,
@@ -81,6 +87,8 @@ import { CronJobsModule } from 'ngx-cron-jobs';
     MediaUploadComponent,
     MediaPreviewDialogComponent,
     NumberCellEditComponent,
+    PasswordCellEditComponent,
+    PasswordRenderComponent,
     PhotoCellEditComponent,
     PhotoCellRenderComponent,
     EmptyCellEditComponent,
@@ -93,6 +101,7 @@ import { CronJobsModule } from 'ngx-cron-jobs';
     LargeAccordionMessageComponent,
     OrderAdditionalActionComponent,
     ImagePreloader,
+    SelectFilterWithNullOptionComponent,
   ],
 })
 export class CommonComponentsModule {}

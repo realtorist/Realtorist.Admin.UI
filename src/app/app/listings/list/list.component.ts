@@ -1,17 +1,18 @@
-import { AfterViewInit, Component } from "@angular/core";
+import { AfterViewInit, Component, OnInit } from "@angular/core";
 import { NbDialogService, NbToastrService } from "@nebular/theme";
 import * as moment from "moment";
 import { DataSource } from "ng2-smart-table/lib/lib/data-source/data-source";
 import { ConfirmDeleteDialogComponent } from "../../../@common/components/confirm-delete-dialog/confirm-delete-dialog.component";
+import { SelectFilterWithNullOptionComponent } from '../../../@common/components/table/selectFilterWithNullOptionComponent.component';
 import { IDataSourceProvider } from "../../../@core/abstractions/dataSourceProvider";
 import { IListingsApi } from "../../../@core/abstractions/listings.api";
 import { apiServerUrl } from '../../../@core/implementations/serverUrl';
 import { EnumDisplayMap } from "../../../@core/models/enumDisplayMap";
 import { PropertyPhoto } from "../../../@core/models/listings/details/propertyPhoto";
-import { ListingSource } from "../../../@core/models/listings/enums/listingSource";
 import { ListingListModel } from "../../../@core/models/listings/listingListModel";
 import { PropertyType } from "../../../@core/models/listings/lookups/propertyType";
 import { TransactionType } from "../../../@core/models/listings/lookups/transactionType";
+import { filterEditorForStringArray } from '../../../@core/models/smartTable/inlineTableSettings';
 import { ListingsAdditionalActionComponent, } from "./additionalAction.component";
 
 @Component({
@@ -19,10 +20,12 @@ import { ListingsAdditionalActionComponent, } from "./additionalAction.component
   templateUrl: "./list.component.html",
   styleUrls: ["./list.component.scss"],
 })
-export class ListingsListComponent implements AfterViewInit {
-  settings = {};
+export class ListingsListComponent implements OnInit {
+  settings: any = {};
 
   source: DataSource;
+
+  feedTypes: string[] = [];
 
   constructor(
     private dataSourceProvider: IDataSourceProvider,
@@ -50,19 +53,11 @@ export class ListingsListComponent implements AfterViewInit {
           filter: false,
           valuePrepareFunction: (cell: PropertyPhoto[], row) => !!cell && cell.length > 0 ? `<a target="_blank" href="${apiServerUrl()}/property/${row.id}"><img src="${cell[0].url}" class="listing-photo"/></a>` : '',
         },
-        source: {
+        feedType: {
           title: 'Listing Source',
           type: "string",
-          filter: {
-            type: 'list',
-            config: {
-              selectText: 'Select...',
-              list: Object.values(ListingSource)
-                .filter(key => typeof(key) === 'number')
-                .map(key => ({ value: key, title: EnumDisplayMap.ListingSource[key]}))
-            },
-          },
-          valuePrepareFunction: (cell: ListingSource, row) => EnumDisplayMap.ListingSource[cell]
+          filter: false,
+          valuePrepareFunction: (cell: string, row) => cell ?? 'User'
         },
         mlsNumber: {
           title: "MLS #",
@@ -146,7 +141,28 @@ export class ListingsListComponent implements AfterViewInit {
     };
   }
 
-  ngAfterViewInit(): void {}
+  ngOnInit(): void {
+    this.api.getFeedTypes()
+      .subscribe(feedTypes => {
+        this.feedTypes = feedTypes;
+        this.settings.columns.feedType.filter = {
+          type: "custom",
+          component: SelectFilterWithNullOptionComponent,
+          config: {
+            selectText: "Select...",
+            list: [
+              { value: null, title: 'User' },
+              ...feedTypes
+                .map(key => ({
+                  value: key,
+                  title: key,
+                })),
+            ],
+          },
+        };
+        this.settings = Object.assign({}, this.settings);
+      });
+  }
 
   onDelete(listing: ListingListModel): void {
     this.dialogService

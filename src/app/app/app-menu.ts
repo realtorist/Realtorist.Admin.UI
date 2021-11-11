@@ -118,11 +118,6 @@ export const MENU_ITEMS: NbMenuItem[] = [
         link: '/app/settings/listings'
       },
       {
-        title: 'Listing sources',
-        icon: 'arrow-circle-right-outline',
-        link: '/app/settings/listing-sources'
-      },
-      {
         title: 'Change password',
         icon: 'lock-outline',
         link: '/app/settings/change-password'

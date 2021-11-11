@@ -4,7 +4,7 @@ import {
   NbToastrService,
 } from "@nebular/theme";
 import { Observable } from "rxjs";
-import { NumberCellEditComponent } from '../../../@common/components/table/numberCellEditComponent';
+import { NumberCellEditComponent } from '../../../@common/components/table/numberCellEditComponent.component';
 import { IListingsApi } from "../../../@core/abstractions/listings.api";
 import { EnumDisplayMap } from "../../../@core/models/enumDisplayMap";
 import { getAddressDisplayString } from "../../../@core/models/listings/details/address";

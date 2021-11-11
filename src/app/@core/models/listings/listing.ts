@@ -8,7 +8,6 @@ import { Parking } from "./details/parking";
 import { PropertyPhoto } from './details/propertyPhoto';
 import { WaterFront } from "./details/waterFront";
 import { Zoning } from "./details/zoning";
-import { ListingSource } from "./enums/listingSource";
 import { AmenitiesNearby } from "./lookups/amenitiesNearby";
 import { Features } from "./lookups/features";
 import { MeasureUnit } from "./lookups/measureUnit";
@@ -21,7 +20,8 @@ export interface Listing {
     id: string;
     featured: boolean;
     disabled: boolean;
-    source: ListingSource;
+    feedId: string;
+    feedType: string;
     address: Address;
     externalId?: string;
     mlsNumber: string;

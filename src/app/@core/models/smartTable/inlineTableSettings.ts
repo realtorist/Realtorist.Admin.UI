@@ -1,9 +1,11 @@
 import { LocalDataSource } from 'ng2-smart-table';
-import { EmptyCellEditComponent } from '../../../@common/components/table/emptyCellEditorComponent';
-import { NumberCellEditComponent } from '../../../@common/components/table/numberCellEditComponent';
+import { EmptyCellEditComponent } from '../../../@common/components/table/emptyCellEditorComponent.component';
+import { NumberCellEditComponent } from '../../../@common/components/table/numberCellEditComponent.component';
 import { OrderAdditionalActionComponent } from '../../../@common/components/table/orderAdditionalAction.component';
-import { PhotoCellEditComponent } from '../../../@common/components/table/photoCellEditComponent';
-import { PhotoCellRenderComponent } from '../../../@common/components/table/photoCellRenderComponent';
+import { PasswordCellEditComponent } from '../../../@common/components/table/passwordCellEditComponent.component';
+import { PasswordRenderComponent } from '../../../@common/components/table/passwordRenderComponent.component';
+import { PhotoCellEditComponent } from '../../../@common/components/table/photoCellEditComponent.component';
+import { PhotoCellRenderComponent } from '../../../@common/components/table/photoCellRenderComponent.component';
 import { EnumDisplayMap } from '../enumDisplayMap';
 
 export const defaultInlineTableSettings = (columns: {}) => {
@@ -32,6 +34,23 @@ export const enumValuePrepareFunction = (type: string) => {
     return (cell, row) => !!cell && EnumDisplayMap[type][cell] ? EnumDisplayMap[type][cell] : undefined;
 }
 
+export const filterEditorForStringArray = (arr: string[], toExclude?: string[]) => {
+    return {
+        type: "list",
+        config: {
+            selectText: "Select...",
+            list: [
+                ...arr
+                    .filter(key => !toExclude || toExclude.indexOf(key) < 0)
+                    .map(key => ({
+                        value: key,
+                        title: key,
+                    })),
+            ],
+        },
+    }
+}
+
 export const filterEditorForEnum = (type: string, toExclude?: string[] | number[], isString: boolean = false) => {
     return {
         type: "list",
@@ -44,7 +63,7 @@ export const filterEditorForEnum = (type: string, toExclude?: string[] | number[
                 { value: '', title: 'Not set' },
                 ...Object.keys(EnumDisplayMap[type])
                     .map(key => ({
-                        value: isString ? key: Number(key),
+                        value: isString ? key : Number(key),
                         title: EnumDisplayMap[type][key],
                     }))
                     .filter(pair => !toExclude || (toExclude as Array<string | number>).indexOf(pair.value) < 0),
@@ -120,6 +139,19 @@ export const numberColumn = (title: string) => (
         editor: {
             type: 'custom',
             component: NumberCellEditComponent
+        }
+    }
+);
+
+export const passwordColumn = (title: string) => (
+    {
+        title: title,
+        type: 'custom',
+        renderComponent: PasswordRenderComponent,
+        filter: false,
+        editor: {
+            type: 'custom',
+            component: PasswordCellEditComponent
         }
     }
 );

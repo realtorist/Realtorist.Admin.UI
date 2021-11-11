@@ -4,7 +4,7 @@ import {
   NbToastrService,
 } from "@nebular/theme";
 import { LocalDataSource } from 'ng2-smart-table';
-import { EmptyCellEditComponent } from '../../../../@common/components/table/emptyCellEditorComponent';
+import { EmptyCellEditComponent } from '../../../../@common/components/table/emptyCellEditorComponent.component';
 import { OrderAdditionalActionComponent } from '../../../../@common/components/table/orderAdditionalAction.component';
 import { MenuItem, MenuItemWithChildren } from '../../../../@core/models/settings/appearance/themeSettings';
 import { ConfirmObject } from '../../../../@core/models/smartTable/confirmObject';

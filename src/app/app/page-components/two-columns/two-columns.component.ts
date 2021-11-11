@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { NbToastrService } from '@nebular/theme';
 import { LocalDataSource } from 'ng2-smart-table';
-import { EmptyCellEditComponent } from '../../../@common/components/table/emptyCellEditorComponent';
+import { EmptyCellEditComponent } from '../../../@common/components/table/emptyCellEditorComponent.component';
 import { OrderAdditionalActionComponent } from '../../../@common/components/table/orderAdditionalAction.component';
 import { PageComponent } from '../../../@core/models/settings/appearance/pageComponent';
 import { MenuItem } from '../../../@core/models/settings/appearance/themeSettings';

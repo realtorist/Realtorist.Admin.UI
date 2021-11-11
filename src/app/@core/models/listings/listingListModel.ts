@@ -1,7 +1,6 @@
 import * as moment from "moment";
 import { Address } from "./details/address";
 import { PropertyPhoto } from "./details/propertyPhoto";
-import { ListingSource } from "./enums/listingSource";
 import { MeasureUnit } from "./lookups/measureUnit";
 import { OwnershipType } from "./lookups/ownershipType";
 import { PaymentUnit } from "./lookups/paymentUnit";
@@ -12,7 +11,8 @@ export interface ListingListModel {
     id: string;
     featured: boolean;
     disabled: boolean;
-    source: ListingSource;
+    feedId: string;
+    feedType: string;
     mlsNumber: string;
     lastUpdated: moment.Moment;
     address: Address;

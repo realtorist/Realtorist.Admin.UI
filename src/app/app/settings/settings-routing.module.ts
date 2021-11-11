@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { AnalyticsSettingsComponent } from './analytics/analytics-setting.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { GeoCodingSettingsComponent } from './geocoding/geocoding-setting.component';
-import { ListingSourcesSettingsComponent } from './listing-sources/listing-sources-setting.component';
 import { ListingsSettingsComponent } from './listings/listings-setting.component';
 import { ProfileSettingsComponent } from './profile/profile-setting.component';
 import { SettingsComponent } from './settings.component';
@@ -40,10 +39,6 @@ const routes: Routes = [{
       component: SocialSettingsComponent,
     },
     {
-      path: 'listing-sources',
-      component: ListingSourcesSettingsComponent,
-    },
-    {
       path: 'listings',
       component: ListingsSettingsComponent,
     },
@@ -68,7 +63,6 @@ export const routedComponents = [
   GeoCodingSettingsComponent,
   AnalyticsSettingsComponent,
   SocialSettingsComponent,
-  ListingSourcesSettingsComponent,
   ListingsSettingsComponent,
   ChangePasswordComponent
 ];

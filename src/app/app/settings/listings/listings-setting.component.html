@@ -105,5 +105,25 @@
         </nb-card>
       </div>
     </div>
+    <div class="row"
+         [nbSpinner]="loading">
+      <div class="col-sm-12">
+        <nb-card>
+          <nb-card-header>Feeds</nb-card-header>
+          <nb-card-body>
+            <div class="row">
+              <div class="col-12">
+                <ng2-smart-table [settings]="tableSettings"
+                                 [source]="sourcesDataSource"
+                                 id="sources-table"
+                                 (createConfirm)="confirm($event)"
+                                 (editConfirm)="confirm($event)">
+                </ng2-smart-table>
+              </div>
+            </div>
+          </nb-card-body>
+        </nb-card>
+      </div>
+    </div>
   </form>
 </ng-container>

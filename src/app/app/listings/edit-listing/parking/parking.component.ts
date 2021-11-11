@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, Input, OnInit } from "@angular/core";
 import { NbToastrService } from '@nebular/theme';
 import { LocalDataSource } from 'ng2-smart-table';
-import { NumberCellEditComponent } from '../../../../@common/components/table/numberCellEditComponent';
+import { NumberCellEditComponent } from '../../../../@common/components/table/numberCellEditComponent.component';
 import { Parking } from '../../../../@core/models/listings/details/parking';
 import { Listing } from '../../../../@core/models/listings/listing';
 import { ParkingType } from '../../../../@core/models/listings/lookups/parkingType';

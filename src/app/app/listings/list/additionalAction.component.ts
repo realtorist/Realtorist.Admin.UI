@@ -4,9 +4,7 @@ import { Router } from '@angular/router';
 import { NbToastrService } from '@nebular/theme';
 
 import { ViewCell } from 'ng2-smart-table';
-import { tap } from 'rxjs/operators';
 import { IListingsApi } from '../../../@core/abstractions/listings.api';
-import { ListingSource } from '../../../@core/models/listings/enums/listingSource';
 import { ListingListModel } from '../../../@core/models/listings/listingListModel';
 
 @Component({
@@ -14,8 +12,8 @@ import { ListingListModel } from '../../../@core/models/listings/listingListMode
     <nb-button-group>
       <a nbButton (click)="feature(!rowData.featured)" [title]="rowData.featured ? 'Unfeature' : 'Feature'"><nb-icon [icon]="rowData.featured ? 'star' : 'star-outline'" pack="eva"></nb-icon></a>
       <a nbButton (click)="disable(!rowData.disabled)" [title]="rowData.disabled ? 'Mark as visible' : 'Mark as hidden'"><nb-icon [icon]="rowData.disabled ? 'eye-outline' : 'eye-off-outline'" pack="eva"></nb-icon></a>
-      <a *ngIf="rowData.source === listingSourceType.Manual" nbButton (click)="navigateToEdit()" title="Edit page"><nb-icon icon="edit-outline" pack="eva"></nb-icon></a>
-      <a *ngIf="rowData.source === listingSourceType.Manual" nbButton (click)="onDelete()" title="Delete page"><nb-icon icon="trash-outline" pack="eva"></nb-icon></a>
+      <a *ngIf="!rowData.feedType" nbButton (click)="navigateToEdit()" title="Edit page"><nb-icon icon="edit-outline" pack="eva"></nb-icon></a>
+      <a *ngIf="!rowData.feedType" nbButton (click)="onDelete()" title="Delete page"><nb-icon icon="trash-outline" pack="eva"></nb-icon></a>
     </nb-button-group>
   `,
   styles: [
@@ -27,8 +25,6 @@ export class ListingsAdditionalActionComponent implements ViewCell, OnInit {
   @Input() rowData: ListingListModel;
   
   @Output() delete: EventEmitter<any> = new EventEmitter();
-
-  listingSourceType = ListingSource;
 
   constructor(
     private readonly router: Router, 

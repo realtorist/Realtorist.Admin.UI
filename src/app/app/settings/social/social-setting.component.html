@@ -38,19 +38,13 @@
         <nb-card>
           <nb-card-body>
             <div class="row">
-              <div class="col-6">
-                <ngx-string-input-form-group title="Facebook profile URL"
-                                             [parent]="settings"
-                                             property="facebookProfileUrl"
-                                             pattern="https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)">
-                </ngx-string-input-form-group>
-              </div>
-              <div class="col-6">
-                <ngx-string-input-form-group title="Instagram profile URL"
-                                             [parent]="settings"
-                                             property="instagramProfileUrl"
-                                             pattern="https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)">
-                </ngx-string-input-form-group>
+              <div class="col-12">
+                <ng2-smart-table [settings]="tableSettings"
+                                 [source]="linksDataSource"
+                                 id="links-table"
+                                 (createConfirm)="confirm($event)"
+                                 (editConfirm)="confirm($event)">
+                </ng2-smart-table>
               </div>
             </div>
           </nb-card-body>

@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { ServerDataSource } from "ng2-smart-table";
 import { DataSource } from "ng2-smart-table/lib/lib/data-source/data-source";
@@ -15,7 +15,7 @@ export class DataSourceProvider extends IDataSourceProvider {
     }
     
     getDataSourceForTable(endPoint: string): DataSource {
-        return new ServerDataSource(this.httpClient, {
+        return new ServerDataSourceWithNullFilter(this.httpClient, {
             endPoint: `${this.baseUrl}${endPoint}`,
             pagerLimitKey: "limit",
             pagerPageKey: "page",
@@ -27,4 +27,22 @@ export class DataSourceProvider extends IDataSourceProvider {
           } as ServerSourceConf);
     }
 
+}
+
+class ServerDataSourceWithNullFilter extends ServerDataSource {
+    constructor(http: HttpClient, conf?: ServerSourceConf | {}) {
+        super(http, conf);
+    }
+
+    addFilterRequestParams(httpParams: HttpParams) {
+        if (this.filterConf.filters) {
+            this.filterConf.filters.forEach((fieldConf) => {
+                if (fieldConf['search'] || fieldConf['search'] === null) {
+                    let value = fieldConf['search'] || '';
+                    httpParams = httpParams.set(this.conf.filterFieldKey.replace('#field#', fieldConf['field']), value);
+                }
+            });
+        }
+        return httpParams;
+    }
 }
